@@ -11,7 +11,7 @@ import os
 
 
 class Command(BaseCommand):
-    help = "Creates a ML model that will predict the sentiment of text"
+    help = "Creates a ML model that will predict whether or not a marriage will end in a divorce"
 
     def handle(self, *args, **kwargs):
         random.seed(3)
