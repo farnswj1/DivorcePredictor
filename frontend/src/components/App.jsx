@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline, Container, Box } from '@mui/material';
 import { Home } from './home';
 import { Prediction } from './prediction';
+import { Error404 } from './errors';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,8 +11,31 @@ export default class App extends React.Component {
 
     this.theme = createTheme({
       palette: {
-        mode: 'light'
-      }
+        mode: 'light',
+        background: {
+          default: '#fadadd'
+        }
+      },
+      components: {
+        MuiPaper: {
+          styleOverrides: {
+            root: {
+              padding: '2rem',
+              borderRadius: '2rem'
+            },
+          }
+        },
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              backgroundColor: '#fe4164',
+              '&:hover': {
+                backgroundColor: '#e52b50'
+              }
+            }
+          }
+        }
+      },
     });
   }
 
@@ -25,6 +49,7 @@ export default class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/prediction" component={Prediction} />
+                <Route path="*" component={Error404} />
               </Switch>
             </Container>
           </Box>

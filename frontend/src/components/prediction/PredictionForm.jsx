@@ -74,6 +74,7 @@ export default class PredictionForm extends React.Component {
     const { handleSubmit } = this.props;
     return (
       <Box component="form" onSubmit={handleSubmit}>
+        <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>
         <Typography variant="h6" sx={{ mb: 3 }}>
           Answer the following questions:
         </Typography>
@@ -102,7 +103,7 @@ export default class PredictionForm extends React.Component {
             </Box>
           ))
         }
-        <Button type="submit" variant="contained">Submit</Button>
+        <Button type="submit" size="large" variant="contained">Submit</Button>
       </Box>
     );
   }

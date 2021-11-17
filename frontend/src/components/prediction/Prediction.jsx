@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import PredictionForm from './PredictionForm';
+import PredictionOutcome from './PredictionOutcome';
 import axios from 'axios';
 
 export default class Prediction extends React.Component {
@@ -94,22 +95,19 @@ export default class Prediction extends React.Component {
   render() {
     const { prediction } = this.state;
     return (
-      <Box>
-        {
-          prediction !== null ? (
-            <>
-              <Typography variant="h4">
-                {'You are predicted to ' + (prediction ? 'NOT ' : '') + 'divorce.'}
-              </Typography>
-              <Box sx={{ mt: 5 }}>
-                <Button variant="contained" onClick={this.resetForm}>Reset</Button>
-              </Box>
-            </>
-            ) : (
-            <PredictionForm handleSubmit={this.handleSubmit}/>
-          )
-        }
-      </Box>
+      <Grid container direction="row" justifyContent="center" alignItems="center">
+        <Grid item >
+          <Paper>
+            {
+              prediction !== null ? (
+                <PredictionOutcome prediction={prediction} resetForm={this.resetForm} />
+                ) : (
+                <PredictionForm handleSubmit={this.handleSubmit}/>
+              )
+            }
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
 }

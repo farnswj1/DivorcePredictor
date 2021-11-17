@@ -140,3 +140,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
 
 MODEL_DIR = os.path.join(BASE_DIR, "divorces/classifiers/model.joblib")
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'core.permissions.HasPermittedIPAddress',
+    ),
+}
