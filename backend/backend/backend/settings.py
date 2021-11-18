@@ -146,3 +146,5 @@ REST_FRAMEWORK = {
         'core.permissions.HasPermittedIPAddress',
     ),
 }
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
