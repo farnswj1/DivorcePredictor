@@ -69,42 +69,41 @@ const QUESTIONS = [
 
 const CHOICES = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
 
-export default class PredictionForm extends React.Component {
-  render() {
-    const { handleSubmit } = this.props;
-    return (
-      <Box component="form" onSubmit={handleSubmit}>
-        <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>
-        <Typography variant="h6" sx={{ mb: 3 }}>
-          Answer the following questions:
-        </Typography>
-        {
-          QUESTIONS.map((question, index) => (
-            <Box key={index + 1} sx={{ mb: 3 }}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">{(index + 1) + '. ' + question}</FormLabel>
-                <RadioGroup
-                  row
-                  aria-label={'q' + String(index + 1).padStart(2, '0')}
-                  name={'q' + String(index + 1).padStart(2, '0')}
-                >
-                  {
-                    CHOICES.map((choice, value) => (
-                      <FormControlLabel
-                        key={value + 1}
-                        value={value + 1}
-                        control={<Radio required size="small" />}
-                        label={choice}
-                      />
-                    ))
-                  }
-                </RadioGroup>
-              </FormControl>
-            </Box>
-          ))
-        }
-        <Button type="submit" size="large" variant="contained">Submit</Button>
-      </Box>
-    );
-  }
-}
+const PredictionForm = ({ handleSubmit }) => (
+  <Box component="form" onSubmit={handleSubmit}>
+    <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>
+    <Typography variant="h6" sx={{ mb: 3 }}>
+      Answer the following questions:
+    </Typography>
+    {
+      QUESTIONS.map((question, index) => (
+        <Box key={index + 1} sx={{ mb: 3 }}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">
+              {(index + 1) + '. ' + question}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-label={'q' + String(index + 1).padStart(2, '0')}
+              name={'q' + String(index + 1).padStart(2, '0')}
+            >
+              {
+                CHOICES.map((choice, value) => (
+                  <FormControlLabel
+                    key={value + 1}
+                    value={value + 1}
+                    control={<Radio required size="small" />}
+                    label={choice}
+                  />
+                ))
+              }
+            </RadioGroup>
+          </FormControl>
+        </Box>
+      ))
+    }
+    <Button type="submit" size="large" variant="contained">Submit</Button>
+  </Box>
+);
+
+export default PredictionForm;
