@@ -8,7 +8,7 @@ class User(AbstractUser):
 
 
 class IPAddress(models.Model):
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.GenericIPAddressField(primary_key=True)
     last_valid_request = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -4,8 +4,8 @@ from .models import IPAddress
 from datetime import timedelta
 import logging
 
-
 logger = logging.getLogger(__name__)
+
 
 @shared_task(name="core.clean_ip_addresses_list")
 def clean_ip_addresses_list():
