@@ -7,6 +7,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Grid,
   Button
 } from '@mui/material';
 
@@ -69,7 +70,7 @@ const QUESTIONS = [
 
 const CHOICES = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
 
-const PredictionForm = ({ handleSubmit }) => (
+const PredictionForm = ({ handleSubmit, error }) => (
   <Box component="form" onSubmit={handleSubmit}>
     <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>
     <Typography variant="h6" sx={{ mb: 3 }}>
@@ -102,7 +103,20 @@ const PredictionForm = ({ handleSubmit }) => (
         </Box>
       ))
     }
-    <Button type="submit" size="large" variant="contained">Submit</Button>
+    <Grid container alignItems="center" spacing={2}>
+      <Grid item>
+        <Button type="submit" size="large" variant="contained">Submit</Button>
+      </Grid>
+      {
+        (error === 403) && (
+          <Grid item>
+            <Typography sx={{ color: 'red' }}>
+              Please wait 1 minute before submitting again.
+            </Typography>
+          </Grid>
+        )
+      }
+    </Grid>
   </Box>
 );
 

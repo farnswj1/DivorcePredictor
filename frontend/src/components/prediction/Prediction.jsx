@@ -93,7 +93,7 @@ export default class Prediction extends React.Component {
   }
 
   render() {
-    const { prediction } = this.state;
+    const { prediction, error } = this.state;
     return (
       <Grid container direction="row" justifyContent="center" alignItems="center">
         <Grid item >
@@ -102,7 +102,7 @@ export default class Prediction extends React.Component {
               prediction !== null ? (
                 <PredictionOutcome prediction={prediction} resetForm={this.resetForm} />
                 ) : (
-                <PredictionForm handleSubmit={this.handleSubmit}/>
+                <PredictionForm handleSubmit={this.handleSubmit} error={error}/>
               )
             }
           </Paper>
