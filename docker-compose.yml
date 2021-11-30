@@ -6,15 +6,21 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - db-net
+      db-net:
+        aliases:
+          - redis
 
   db:
     image: postgres
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: password
     networks:
-      - db-net
+      db-net:
+        aliases:
+          - postgres
 
   backend:
     restart: always
@@ -32,7 +38,9 @@ services:
       - db
       - redis
     networks:
-      - db-net
+      db-net:
+        aliases:
+          - backend
 
   frontend:
     restart: always
@@ -47,9 +55,11 @@ services:
       - "3000:3000"
     stdin_open: true
     depends_on:
-      - project
+      - backend
     networks:
-      - db-net
+      db-net:
+        aliases:
+          - frontend
 
 networks:
   db-net:
