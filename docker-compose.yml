@@ -9,7 +9,6 @@ services:
       db-net:
         aliases:
           - redis
-
   db:
     image: postgres
     restart: always
@@ -23,12 +22,10 @@ services:
       db-net:
         aliases:
           - postgres
-
   backend:
     restart: always
     container_name: backend
-    command : bash -c "python manage.py migrate &&
-                      python manage.py runserver 0.0.0.0:8000"
+    command : bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     env_file:
       - ./backend/settings.ini
     build:
@@ -43,11 +40,10 @@ services:
       db-net:
         aliases:
           - backend
-
   frontend:
     restart: always
     command : npm start
-    container_name: front
+    container_name: frontend
     environment:
       REACT_APP_API_URL: http://localhost:8000/
     build:
@@ -62,7 +58,6 @@ services:
       db-net:
         aliases:
           - frontend
-
 networks:
   db-net:
     driver: bridge
