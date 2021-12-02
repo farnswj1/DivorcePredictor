@@ -7,26 +7,31 @@ services:
     restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
     networks:
       db-net:
         aliases:
           - redis
   db:
     container_name: db
-    image: postgres
+    image: postgres:12
     restart: always
     environment:
       POSTGRES_DB: divorcepredictor
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: supersecret
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/posgresql/data
     networks:
       db-net:
         aliases:
           - postgres
   backend:
     container_name: backend
+    image: backend
     restart: always
     command : bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     env_file:
@@ -43,8 +48,36 @@ services:
       db-net:
         aliases:
           - backend
+  celery_worker:
+    container_name: celery_worker
+    image: backend
+    restart: always
+    command: celery -A backend worker -l info
+    env_file:
+      - ./backend/settings.ini
+    depends_on:
+      - backend
+    networks:
+      db-net:
+        aliases:
+          - celery_worker
+  celery_beat:
+    container_name: celery_beat
+    image: backend
+    restart: always
+    command: celery -A backend beat -l info
+    env_file:
+      - ./backend/settings.ini
+    depends_on:
+      - backend
+      - celery_worker
+    networks:
+      db-net:
+        aliases:
+          - celery_beat
   frontend:
     container_name: frontend
+    image: frontend
     restart: always
     command : npm start
     environment:
@@ -65,3 +98,7 @@ services:
 networks:
   db-net:
     driver: bridge
+
+volumes:
+  redis_data:
+  postgres_data:
