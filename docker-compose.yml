@@ -20,7 +20,7 @@ services:
     environment:
       POSTGRES_DB: divorcepredictor
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: supersecret
+      POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
@@ -35,7 +35,7 @@ services:
     restart: always
     command : bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     env_file:
-      - ./backend/settings.ini
+      - ./backend/.env
     build:
       context: ./backend/
       dockerfile: Dockerfile
@@ -54,9 +54,10 @@ services:
     restart: always
     command: celery -A backend worker -l info
     env_file:
-      - ./backend/settings.ini
+      - ./backend/.env
     depends_on:
       - backend
+      - redis
     networks:
       db-net:
         aliases:
@@ -67,10 +68,11 @@ services:
     restart: always
     command: celery -A backend beat -l info
     env_file:
-      - ./backend/settings.ini
+      - ./backend/.env
     depends_on:
       - backend
       - celery_worker
+      - redis
     networks:
       db-net:
         aliases:
@@ -80,8 +82,8 @@ services:
     image: frontend
     restart: always
     command : npm start
-    environment:
-      REACT_APP_API_URL: http://localhost:8000/
+    env_file:
+      - ./frontend/.env
     build:
       context: ./frontend/
       dockerfile: Dockerfile
