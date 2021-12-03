@@ -1,3 +1,4 @@
 .gitignore
 .dockerignore
 celerybeat-schedule.db
+Dockerfile
