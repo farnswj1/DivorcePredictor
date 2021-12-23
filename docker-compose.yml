@@ -61,7 +61,6 @@ services:
     container_name: frontend
     image: frontend
     restart: always
-    command : npm start
     env_file:
       - ./frontend/.env
     build:
