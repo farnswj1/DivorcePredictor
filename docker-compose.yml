@@ -45,7 +45,6 @@ services:
       - ./backend/.env
     depends_on:
       - backend
-      - redis
   celery_beat:
     container_name: celery_beat
     image: backend
@@ -54,9 +53,7 @@ services:
     env_file:
       - ./backend/.env
     depends_on:
-      - backend
       - celery_worker
-      - redis
   frontend:
     container_name: frontend
     image: frontend
