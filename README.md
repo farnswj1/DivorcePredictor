@@ -28,12 +28,12 @@ DJANGO_SETTINGS_MODULE=backend.settings
 SECRET_KEY=[somerandomstring]
 
 DEBUG=False
-ALLOWED_HOSTS=localhost
-CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)(:3000)?$
+ALLOWED_HOSTS=localhost 127.0.0.1
+CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)$
 
 DB_ENGINE=django.db.backends.postgresql_psycopg2
 DB_NAME=divorcepredictor
-DB_HOST=db
+DB_HOST=postgres
 DB_USER=postgres
 DB_PASSWORD=password
 DB_PORT=5432
@@ -48,7 +48,7 @@ However, make sure to update the environment variables in
 The ```frontend``` directory must also have a ```.env``` file 
 with the following variables:
 ```
-REACT_APP_API_URL=http://localhost:8000/api/
+REACT_APP_API_URL=http://localhost/api/
 ```
 The URL should be the endpoint of the backend server.
 

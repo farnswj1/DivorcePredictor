@@ -1,4 +1,7 @@
 .gitignore
 .dockerignore
 Dockerfile
-celerybeat-schedule.db
+__pycache__/
+media/
+static/
+*.db

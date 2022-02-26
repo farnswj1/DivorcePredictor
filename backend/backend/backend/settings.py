@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_celery_beat',
     'core',
     'divorces',
 ]
@@ -149,3 +150,4 @@ REST_FRAMEWORK = {
 }
 
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
