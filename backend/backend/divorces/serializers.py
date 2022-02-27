@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import DivorceCase
+from divorces.models import DivorceCase
 
 
 class DivorceCaseSerializer(ModelSerializer):

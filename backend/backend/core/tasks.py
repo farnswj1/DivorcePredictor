@@ -1,6 +1,6 @@
 from django.utils import timezone
 from celery import shared_task
-from .models import IPAddress
+from core.models import IPAddress
 from datetime import timedelta
 import logging
 

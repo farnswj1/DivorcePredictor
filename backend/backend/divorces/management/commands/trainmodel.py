@@ -7,7 +7,6 @@ from sklearn.metrics import confusion_matrix, classification_report
 import pandas as pd
 import random
 import joblib
-import os
 
 
 class Command(BaseCommand):

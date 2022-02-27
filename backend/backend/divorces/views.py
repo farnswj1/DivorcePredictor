@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import DivorceCaseSerializer
-from .functions import get_ml_model
+from divorces.serializers import DivorceCaseSerializer
+from divorces.functions import get_ml_model
 import pandas as pd
 
 # Create your views here.

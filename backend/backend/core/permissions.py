@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission
 from django.utils import timezone
-from .models import IPAddress
-from .functions import get_client_ip
+from core.models import IPAddress
+from core.functions import get_client_ip
 from datetime import timedelta
 
 
