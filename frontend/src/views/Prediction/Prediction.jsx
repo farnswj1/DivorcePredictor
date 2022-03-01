@@ -1,5 +1,4 @@
 import React from 'react';
-import { Grid, Paper } from '@mui/material';
 import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
 import axios from 'axios';
@@ -41,19 +40,11 @@ export default class Prediction extends React.Component {
   render() {
     const { prediction, error } = this.state;
     return (
-      <Grid container direction="row" justifyContent="center" alignItems="center">
-        <Grid item >
-          <Paper>
-            {
-              prediction !== null ? (
-                <PredictionOutcome prediction={prediction} resetForm={this.resetForm} />
-                ) : (
-                <PredictionForm handleSubmit={this.handleSubmit} error={error}/>
-              )
-            }
-          </Paper>
-        </Grid>
-      </Grid>
+      prediction !== null ? (
+        <PredictionOutcome prediction={prediction} resetForm={this.resetForm} />
+      ) : (
+        <PredictionForm handleSubmit={this.handleSubmit} error={error}/>
+      )
     );
   }
 }

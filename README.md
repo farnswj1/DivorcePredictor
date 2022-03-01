@@ -48,7 +48,7 @@ However, make sure to update the environment variables in
 The ```frontend``` directory must also have a ```.env``` file 
 with the following variables:
 ```
-REACT_APP_API_URL=http://localhost/api/
+REACT_APP_API_URL=http://127.0.0.1/api/
 ```
 The URL should be the endpoint of the backend server.
 

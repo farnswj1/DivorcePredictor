@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline, Container, Box } from '@mui/material';
-import { Home } from './home';
-import { Prediction } from './prediction';
-import { Error404 } from './errors';
+import { Home } from './views/Home';
+import { Prediction } from './views/Prediction';
+import { Error404 } from './views/Error404';
 
 export default class App extends React.Component {
   constructor(props) {
