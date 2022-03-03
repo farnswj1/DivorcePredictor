@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
-import GridItem from '../../components/GridItem';
+import GridItem from 'components/GridItem';
 
-const Home = () => (
+const Home: FC = () => (
   <GridItem>
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h3">Divorce Predictor</Typography>

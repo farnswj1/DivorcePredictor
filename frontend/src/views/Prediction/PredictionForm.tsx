@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { FC, FormEventHandler } from 'react';
 import {
   Box,
-  Typography,
+  Button,
   FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
-  Radio,
+  FormLabel,
   Grid,
-  Button
+  Radio,
+  RadioGroup,
+  Typography
 } from '@mui/material';
-import GridItem from '../../components/GridItem';
+import GridItem from 'components/GridItem';
 
-const QUESTIONS = [
+const QUESTIONS: string[] = [
   'If one of us apologizes when our discussion deteriorates, the discussion ends.',
   'I know we can ignore our differences, even if things get hard sometimes.',
   'When we need it, we can take our discussions with my spouse from the beginning and correct it.',
@@ -69,9 +69,14 @@ const QUESTIONS = [
   'I\'m not afraid to tell my spouse about his/her incompetence.'
 ];
 
-const CHOICES = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
+const CHOICES: string[] = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
 
-const PredictionForm = ({ handleSubmit, error }) => (
+interface Props {
+  handleSubmit: FormEventHandler,
+  error: number | null
+};
+
+const PredictionForm: FC<Props> = ({ handleSubmit, error }) => (
   <GridItem>
     <Box component="form" onSubmit={handleSubmit}>
       <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>

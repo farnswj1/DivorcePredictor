@@ -1,8 +1,13 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import GridItem from '../../components/GridItem';
+import React, { FC, MouseEventHandler } from 'react';
+import { Box, Button, Typography } from '@mui/material';
+import GridItem from 'components/GridItem';
 
-const PredictionOutcome = ({ prediction, resetForm }) => (
+interface Props {
+  prediction: boolean | null,
+  resetForm: MouseEventHandler<Element>
+};
+
+const PredictionOutcome: FC<Props> = ({ prediction, resetForm }) => (
   <GridItem>
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h4">
