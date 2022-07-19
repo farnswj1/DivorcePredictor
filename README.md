@@ -10,7 +10,7 @@ The project uses the following:
 - React 17.0.2
 - Material-UI 5.1.0
 - PostgreSQL 12
-- Redis 5
+- Redis 7
 - Nginx 1.21
 - Docker
 - Docker Compose
