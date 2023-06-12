@@ -19,6 +19,16 @@ For additional information on project specifications, see
 ```backend/Pipfile``` for the backend server and 
 ```frontend/package.json``` for the frontend respectively.
 
+### PostgreSQL
+In the `postgres` directory, create an `.env` file with the following
+configurations. It is highly recommended to use your own credentials
+instead of the values provided:
+```
+POSTGRES_DB=divorcepredictor
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+```
+
 ### Backend
 In the ```backend``` directory, create a ```.env``` file 
 that contains the following environment variables:
