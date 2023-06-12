@@ -15,6 +15,6 @@ class IPAddress(models.Model):
         return self.ip_address
 
     class Meta:
-        ordering = ("ip_address", "last_valid_request")
-        verbose_name = "IP Address"
-        verbose_name_plural = "IP Addresses"
+        ordering = ('ip_address', 'last_valid_request')
+        verbose_name = 'IP Address'
+        verbose_name_plural = 'IP Addresses'

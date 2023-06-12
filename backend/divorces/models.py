@@ -3,14 +3,13 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class DivorceCase(models.Model):
-
     class Scale(models.IntegerChoices):
         NEVER = 1
         SELDOM = 2
         AVERAGELY = 3
         FREQUENTLY = 4 
         ALWAYS = 5
-    
+
     q01 = models.IntegerField(
         choices=Scale.choices,
         validators=[MinValueValidator(1), MaxValueValidator(5)]
@@ -230,4 +229,4 @@ class DivorceCase(models.Model):
     is_divorced = models.BooleanField()
 
     class Meta:
-        ordering = ("id",)
+        ordering = ('id',)

@@ -3,15 +3,15 @@ This web app predicts whether or not a marriage will last.
 
 ## Setup
 The project uses the following:
-- Python 3.9
-- Django 3.2.8
-- Celery 5.2.1
+- Python 3.11
+- Django 4.2
+- Celery 5.3.0
 - NPM
 - React 17.0.2
 - Material-UI 5.1.0
-- PostgreSQL 12
+- PostgreSQL 15
 - Redis 7
-- Nginx 1.21
+- Nginx 1.23
 - Docker
 - Docker Compose
 
@@ -23,15 +23,13 @@ For additional information on project specifications, see
 In the ```backend``` directory, create a ```.env``` file 
 that contains the following environment variables:
 ```
-DJANGO_SETTINGS_MODULE=backend.settings
-
-SECRET_KEY=[somerandomstring]
+SECRET_KEY=somerandomstring
 
 DEBUG=False
 ALLOWED_HOSTS=localhost 127.0.0.1
 CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)$
 
-DB_ENGINE=django.db.backends.postgresql_psycopg2
+DB_ENGINE=django.db.backends.postgresql
 DB_NAME=divorcepredictor
 DB_HOST=postgres
 DB_USER=postgres
@@ -56,10 +54,10 @@ The URL should be the endpoint of the backend server.
 The project uses Docker. Ensure Docker and Docker Compose are installed 
 before continuing.
 
-To build, run ```docker-compose build```
+To build, run ```docker compose build```
 
 ## Running
-To run the web app, run ```docker-compose up -d```, then 
+To run the web app, run ```docker compose up -d```, then 
 go to http://localhost using your web browser.
 
 ## Populating the Database

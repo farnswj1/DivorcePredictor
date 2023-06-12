@@ -1,17 +1,20 @@
 # base image
-FROM python:3.9
+FROM python:3.11
 
 # set environment variables
 ENV PYTHONUNBUFFERED 1
 
+# expose port(s)
+EXPOSE 8000
+
 # set directory
-WORKDIR /backend
+WORKDIR /opt/app
 
 # add application and install dependencies
-COPY Pipfile Pipfile.lock ./
 RUN pip install pipenv
+COPY Pipfile Pipfile.lock ./
 RUN pipenv install --system --deploy --ignore-pipfile
-COPY backend supervisord.conf docker-entrypoint.sh ./
+COPY . ./
 
 # entrypoint
 RUN chmod a+x docker-entrypoint.sh
