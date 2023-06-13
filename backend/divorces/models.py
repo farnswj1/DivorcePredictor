@@ -7,7 +7,7 @@ class DivorceCase(models.Model):
         NEVER = 1
         SELDOM = 2
         AVERAGELY = 3
-        FREQUENTLY = 4 
+        FREQUENTLY = 4
         ALWAYS = 5
 
     q01 = models.IntegerField(

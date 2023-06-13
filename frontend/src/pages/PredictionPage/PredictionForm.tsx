@@ -1,4 +1,4 @@
-import React, { FC, FormEventHandler } from 'react';
+import { FC, FormEventHandler } from 'react';
 import {
   Box,
   Button,
@@ -10,7 +10,6 @@ import {
   RadioGroup,
   Typography
 } from '@mui/material';
-import GridItem from 'components/GridItem';
 
 const QUESTIONS: string[] = [
   'If one of us apologizes when our discussion deteriorates, the discussion ends.',
@@ -77,57 +76,57 @@ interface Props {
 };
 
 const PredictionForm: FC<Props> = ({ handleSubmit, error }) => (
-  <GridItem>
-    <Box component="form" onSubmit={handleSubmit}>
-      <Typography variant="h3" sx={{ mb: 3 }}>Will it last?</Typography>
-      <Typography variant="h6" sx={{ mb: 3 }}>
-        Answer the following questions:
-      </Typography>
-      {
-        QUESTIONS.map((question, index) => (
-          <Box key={index + 1} sx={{ mb: 3 }}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">
-                {(index + 1) + '. ' + question}
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-label={'q' + String(index + 1).padStart(2, '0')}
-                name={'q' + String(index + 1).padStart(2, '0')}
-              >
-                {
-                  CHOICES.map((choice, value) => (
-                    <FormControlLabel
-                      key={value + 1}
-                      value={value + 1}
-                      control={<Radio required size="small" />}
-                      label={choice}
-                    />
-                  ))
-                }
-              </RadioGroup>
-            </FormControl>
-          </Box>
-        ))
-      }
-      <Grid container alignItems="center" spacing={2}>
-        <Grid item>
-          <Button type="submit" size="large" variant="contained">
-            Submit
-          </Button>
-        </Grid>
-        {
-          (error === 403) && (
-            <Grid item>
-              <Typography sx={{ color: 'red' }}>
-                Please wait 1 minute before submitting again.
-              </Typography>
-            </Grid>
-          )
-        }
+  <Box component="form" onSubmit={handleSubmit}>
+    <Typography variant="h3" sx={{ mb: 3 }}>
+      Will it last?
+    </Typography>
+    <Typography variant="h6" sx={{ mb: 3 }}>
+      Answer the following questions:
+    </Typography>
+    {
+      QUESTIONS.map((question, index) => (
+        <Box key={index + 1} sx={{ mb: 3 }}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">
+              {(index + 1) + '. ' + question}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-label={'q' + String(index + 1).padStart(2, '0')}
+              name={'q' + String(index + 1).padStart(2, '0')}
+            >
+              {
+                CHOICES.map((choice, value) => (
+                  <FormControlLabel
+                    key={value + 1}
+                    value={value + 1}
+                    control={<Radio required size="small" />}
+                    label={choice}
+                  />
+                ))
+              }
+            </RadioGroup>
+          </FormControl>
+        </Box>
+      ))
+    }
+    <Grid container alignItems="center" spacing={2}>
+      <Grid item>
+        <Button type="submit" size="large" variant="contained">
+          Submit
+        </Button>
       </Grid>
-    </Box>
-  </GridItem>
+      {
+        (error === 403) && (
+          <Grid item>
+            <Typography sx={{ color: 'red' }}>
+              Please wait 1 minute before submitting again.
+            </Typography>
+          </Grid>
+        )
+      }
+    </Grid>
+  </Box>
 );
 
 export default PredictionForm;

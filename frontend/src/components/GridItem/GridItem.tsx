@@ -1,11 +1,11 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { Grid, Paper } from '@mui/material';
 
-interface Props {
+interface GridItemProps {
   children: ReactNode
 };
 
-const GridItem: FC<Props> = ({ children }) => (
+const GridItem: FC<GridItemProps> = ({ children }) => (
   <Grid container direction="row" justifyContent="center" alignItems="center">
     <Grid item >
       <Paper>

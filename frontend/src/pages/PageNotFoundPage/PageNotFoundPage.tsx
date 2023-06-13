@@ -1,22 +1,26 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
-import GridItem from 'components/GridItem';
+import { GridItem } from 'components';
 
-const Error404: FC = () => (
+const PageNotFoundPage: FC = () => (
   <GridItem>
     <Box sx={{ textAlign: 'center' }}>
-      <Typography variant="h3">Page Not Found</Typography>
+      <Typography variant="h3">
+        Page Not Found
+      </Typography>
       <Typography variant="h6">
         It appears you are lost. Click the button below.
       </Typography>
       <Box sx={{ mt: 5 }}>
         <Link to="/" >
-          <Button variant="contained" size="large">Home</Button>
+          <Button variant="contained" size="large">
+            Home
+          </Button>
         </Link>
       </Box>
     </Box>
   </GridItem>
 );
 
-export default Error404;
+export default PageNotFoundPage;

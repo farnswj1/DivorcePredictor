@@ -1,9 +1,10 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
+import { GridItem } from 'components';
+import { APIService } from 'services';
 import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
-import axios from 'axios';
 
-const Prediction: FC = () => {
+const PredictionPage: FC = () => {
   const [prediction, setPrediction] = useState<boolean | null>(null);
   const [error, setError] = useState<number | null>(null);
 
@@ -19,7 +20,7 @@ const Prediction: FC = () => {
       }
     };
 
-    axios.post(process.env.REACT_APP_API_URL + 'divorces/prediction', data, config)
+    APIService.post('/api/divorces/prediction', data, config)
       .then(response => {
         setPrediction(response.data.prediction);
         setError(null);
@@ -36,12 +37,22 @@ const Prediction: FC = () => {
   };
 
   return (
-    prediction !== null ? (
-      <PredictionOutcome prediction={prediction} resetForm={resetForm} />
-    ) : (
-      <PredictionForm handleSubmit={handleSubmit} error={error}/>
-    )
+    <GridItem>
+      {
+        prediction !== null ? (
+          <PredictionOutcome
+            prediction={prediction}
+            resetForm={resetForm}
+          />
+        ) : (
+          <PredictionForm
+            handleSubmit={handleSubmit}
+            error={error}
+          />
+        )
+      }
+    </GridItem>
   );
 };
 
-export default Prediction;
+export default PredictionPage;

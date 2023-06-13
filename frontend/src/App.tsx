@@ -1,9 +1,7 @@
-import React, { FC } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Box, Container, createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
-import { Home } from 'views/Home';
-import { Prediction } from 'views/Prediction';
-import { Error404 } from 'views/Error404';
+import { FC } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Container, createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import Routes from 'routes';
 
 const App: FC = () => {
   const theme: Theme = createTheme({
@@ -34,20 +32,14 @@ const App: FC = () => {
       }
     },
   });
-  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Box>
-          <Container sx={{ my: 5 }}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/prediction" component={Prediction} />
-              <Route path="*" component={Error404} />
-            </Switch>
-          </Container>
-        </Box>
+        <Container sx={{ my: 5 }}>
+          <Routes />
+        </Container>
       </BrowserRouter>
     </ThemeProvider>
   );
