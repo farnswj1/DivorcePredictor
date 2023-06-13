@@ -46,7 +46,7 @@ DB_USER=postgres
 DB_PASSWORD=password
 DB_PORT=5432
 
-CELERY_BROKER_URL=redis://redis:6379
+REDIS_URL=redis://redis:6379
 ```
 The database variables can be changed as desired.
 However, make sure to update the environment variables in
