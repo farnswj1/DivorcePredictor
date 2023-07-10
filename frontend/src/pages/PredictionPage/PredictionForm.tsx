@@ -72,43 +72,56 @@ const CHOICES: string[] = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always
 
 interface Props {
   handleSubmit: FormEventHandler,
-  error: number | null
+  status: number | null
 };
 
-const PredictionForm: FC<Props> = ({ handleSubmit, error }) => (
+const PredictionForm: FC<Props> = ({ handleSubmit, status }) => (
   <Box component="form" onSubmit={handleSubmit}>
-    <Typography variant="h3" sx={{ mb: 3 }}>
-      Will it last?
-    </Typography>
-    <Typography variant="h6" sx={{ mb: 3 }}>
-      Answer the following questions:
-    </Typography>
+    <Box marginBottom={3}>
+      <Typography variant="h3">
+        Will it last?
+      </Typography>
+    </Box>
+    <Box marginBottom={3}>
+      <Typography variant="h6">
+        Answer the following questions:
+      </Typography>
+    </Box>
     {
-      QUESTIONS.map((question, index) => (
-        <Box key={index + 1} sx={{ mb: 3 }}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">
-              {(index + 1) + '. ' + question}
-            </FormLabel>
-            <RadioGroup
-              row
-              aria-label={'q' + String(index + 1).padStart(2, '0')}
-              name={'q' + String(index + 1).padStart(2, '0')}
-            >
-              {
-                CHOICES.map((choice, value) => (
-                  <FormControlLabel
-                    key={value + 1}
-                    value={value + 1}
-                    control={<Radio required size="small" />}
-                    label={choice}
-                  />
-                ))
-              }
-            </RadioGroup>
-          </FormControl>
-        </Box>
-      ))
+      QUESTIONS.map((question, index) => {
+        const questionNumber: number = index + 1;
+        const radioNumber: string = 'q' + String(questionNumber).padStart(2, '0');
+
+        return (
+          <Box key={questionNumber} marginBottom={3}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">
+                {`${questionNumber}. ${question}`}
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-label={radioNumber}
+                name={radioNumber}
+              >
+                {
+                  CHOICES.map((choice, value) => {
+                    const _value: number = value + 1;
+
+                    return (
+                      <FormControlLabel
+                        key={_value}
+                        value={_value}
+                        control={<Radio required size="small" />}
+                        label={choice}
+                      />
+                    );
+                  })
+                }
+              </RadioGroup>
+            </FormControl>
+          </Box>
+        );
+      })
     }
     <Grid container alignItems="center" spacing={2}>
       <Grid item>
@@ -117,10 +130,19 @@ const PredictionForm: FC<Props> = ({ handleSubmit, error }) => (
         </Button>
       </Grid>
       {
-        (error === 403) && (
+        (status === 403) && (
           <Grid item>
-            <Typography sx={{ color: 'red' }}>
+            <Typography color="error">
               Please wait 1 minute before submitting again.
+            </Typography>
+          </Grid>
+        )
+      }
+      {
+        (status && status >= 500) && (
+          <Grid item>
+            <Typography color="error">
+              There is an issue with the server! Try again later!
             </Typography>
           </Grid>
         )

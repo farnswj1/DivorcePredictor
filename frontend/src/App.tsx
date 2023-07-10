@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Container, createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import { Box, createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import Routes from 'routes';
 
 const App: FC = () => {
@@ -37,9 +37,9 @@ const App: FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Container sx={{ my: 5 }}>
+        <Box marginY={5}>
           <Routes />
-        </Container>
+        </Box>
       </BrowserRouter>
     </ThemeProvider>
   );

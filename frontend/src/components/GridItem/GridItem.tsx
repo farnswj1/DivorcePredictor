@@ -7,7 +7,7 @@ interface GridItemProps {
 
 const GridItem: FC<GridItemProps> = ({ children }) => (
   <Grid container direction="row" justifyContent="center" alignItems="center">
-    <Grid item >
+    <Grid item>
       <Paper>
         {children}
       </Paper>

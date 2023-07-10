@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import { GridItem } from 'components';
 import { APIService } from 'services';
 import PredictionForm from './PredictionForm';
@@ -6,34 +6,28 @@ import PredictionOutcome from './PredictionOutcome';
 
 const PredictionPage: FC = () => {
   const [prediction, setPrediction] = useState<boolean | null>(null);
-  const [error, setError] = useState<number | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
 
-  const handleSubmit = (event: ChangeEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    setStatus(null);
+    setPrediction(null);
 
-    const form: FormData = new FormData(event.target);
-    const data: object = Object.fromEntries(form.entries());
+    const data: FormData = new FormData(event.currentTarget);
 
-    const config: object = {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    };
-
-    APIService.post('/api/divorces/prediction', data, config)
+    APIService.post('/api/divorces/prediction', data)
       .then(response => {
         setPrediction(response.data.prediction);
-        setError(null);
+        setStatus(response.status);
       })
       .catch(error => {
-        setPrediction(null);
-        setError(error.response.status);
+        setStatus(error.response.status);
       });
-  }
+  };
 
   const resetForm = (): void => {
     setPrediction(null);
-    setError(null);
+    setStatus(null);
   };
 
   return (
@@ -47,7 +41,7 @@ const PredictionPage: FC = () => {
         ) : (
           <PredictionForm
             handleSubmit={handleSubmit}
-            error={error}
+            status={status}
           />
         )
       }
