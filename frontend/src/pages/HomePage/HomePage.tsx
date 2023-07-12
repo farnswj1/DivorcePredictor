@@ -5,14 +5,14 @@ import { GridItem } from 'components';
 
 const HomePage: FC = () => (
   <GridItem>
-    <Box sx={{ textAlign: 'center' }}>
+    <Box textAlign="center">
       <Typography variant="h3">
         Divorce Predictor
       </Typography>
       <Typography variant="h6">
         Will your marriage last? Find out now!
       </Typography>
-      <Box sx={{ mt: 5 }}>
+      <Box marginTop={5}>
         <Link to="/prediction">
           <Button variant="contained" size="large">
             Click Here!

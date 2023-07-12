@@ -5,11 +5,13 @@ import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
 
 const PredictionPage: FC = () => {
-  const [prediction, setPrediction] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<number | null>(null);
+  const [prediction, setPrediction] = useState<boolean | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    setIsLoading(true);
     setStatus(null);
     setPrediction(null);
 
@@ -22,6 +24,9 @@ const PredictionPage: FC = () => {
       })
       .catch(error => {
         setStatus(error.response.status);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -41,6 +46,7 @@ const PredictionPage: FC = () => {
         ) : (
           <PredictionForm
             handleSubmit={handleSubmit}
+            disabled={isLoading}
             status={status}
           />
         )

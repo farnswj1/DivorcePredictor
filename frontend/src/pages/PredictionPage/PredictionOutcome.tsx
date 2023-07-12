@@ -6,7 +6,10 @@ interface PredictionOutcomeProps {
   resetForm: MouseEventHandler<Element>
 };
 
-const PredictionOutcome: FC<PredictionOutcomeProps> = ({ prediction, resetForm }) => (
+const PredictionOutcome: FC<PredictionOutcomeProps> = ({
+  prediction,
+  resetForm
+}) => (
   <Box textAlign="center">
     <Typography variant="h4">
       {`You are predicted to ${prediction ? 'NOT ' : ''}divorce.`}

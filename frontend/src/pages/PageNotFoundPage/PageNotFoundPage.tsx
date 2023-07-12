@@ -5,15 +5,15 @@ import { GridItem } from 'components';
 
 const PageNotFoundPage: FC = () => (
   <GridItem>
-    <Box sx={{ textAlign: 'center' }}>
+    <Box textAlign="center">
       <Typography variant="h3">
         Page Not Found
       </Typography>
       <Typography variant="h6">
         It appears you are lost. Click the button below.
       </Typography>
-      <Box sx={{ mt: 5 }}>
-        <Link to="/" >
+      <Box marginTop={5}>
+        <Link to="/">
           <Button variant="contained" size="large">
             Home
           </Button>

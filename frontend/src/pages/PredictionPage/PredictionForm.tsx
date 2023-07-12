@@ -70,12 +70,17 @@ const QUESTIONS: string[] = [
 
 const CHOICES: string[] = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
 
-interface Props {
+interface PredictionFormProps {
   handleSubmit: FormEventHandler,
+  disabled: boolean
   status: number | null
 };
 
-const PredictionForm: FC<Props> = ({ handleSubmit, status }) => (
+const PredictionForm: FC<PredictionFormProps> = ({
+  handleSubmit,
+  disabled,
+  status
+}) => (
   <Box component="form" onSubmit={handleSubmit}>
     <Box marginBottom={3}>
       <Typography variant="h3">
@@ -94,7 +99,7 @@ const PredictionForm: FC<Props> = ({ handleSubmit, status }) => (
 
         return (
           <Box key={questionNumber} marginBottom={3}>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" disabled={disabled}>
               <FormLabel component="legend">
                 {`${questionNumber}. ${question}`}
               </FormLabel>
@@ -125,7 +130,12 @@ const PredictionForm: FC<Props> = ({ handleSubmit, status }) => (
     }
     <Grid container alignItems="center" spacing={2}>
       <Grid item>
-        <Button type="submit" size="large" variant="contained">
+        <Button
+          type="submit"
+          size="large"
+          variant="contained"
+          disabled={disabled}
+        >
           Submit
         </Button>
       </Grid>
