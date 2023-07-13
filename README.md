@@ -4,6 +4,7 @@ This web app predicts whether or not a marriage will last.
 ## Setup
 The project uses the following:
 - Python 3
+- TypeScript
 - Django
 - Celery
 - NPM
