@@ -3,15 +3,15 @@ This web app predicts whether or not a marriage will last.
 
 ## Setup
 The project uses the following:
-- Python 3.11
-- Django 4.2
-- Celery 5.3.0
+- Python 3
+- Django
+- Celery
 - NPM
-- React 17.0.2
-- Material-UI 5.1.0
-- PostgreSQL 15
-- Redis 7
-- Nginx 1.23
+- React
+- Material-UI
+- PostgreSQL
+- Redis
+- Nginx
 - Docker
 - Docker Compose
 
