@@ -39,6 +39,7 @@ SECRET_KEY=somerandomstring
 DEBUG=False
 ALLOWED_HOSTS=localhost 127.0.0.1
 CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)$
+CSRF_TRUSTED_ORIGINS=http://localhost http://127.0.0.1
 
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=divorcepredictor
