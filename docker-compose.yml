@@ -6,6 +6,8 @@ services:
     restart: always
     volumes:
       - redis_data:/data:rw
+    networks:
+      - private
   postgres:
     container_name: postgres
     image: postgres:15
@@ -14,6 +16,8 @@ services:
       - ./postgres/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data:rw
+    networks:
+      - private
   backend:
     container_name: backend
     image: backend
@@ -23,6 +27,9 @@ services:
       - ./backend/.env
     volumes:
       - backend_static:/opt/app/static:rw
+    networks:
+      - public
+      - private
     depends_on:
       - postgres
       - redis
@@ -32,6 +39,8 @@ services:
     build: frontend
     volumes:
       - frontend_static:/opt/app/build/:rw
+    networks:
+      - public
     depends_on:
       - backend
   nginx:
@@ -47,6 +56,8 @@ services:
       - ssl_certs:/etc/letsencrypt/:ro
       - backend_static:/opt/backend/static:ro
       - frontend_static:/opt/frontend/static/:ro
+    networks:
+      - public
     depends_on:
       - frontend
   certbot:
@@ -56,6 +67,8 @@ services:
       - ./certbot/cli.ini:/etc/letsencrypt/cli.ini:ro
       - certbot_data:/var/www/certbot/:rw
       - ssl_certs:/etc/letsencrypt/:rw
+    networks:
+      - public
     depends_on:
       - nginx
 volumes:
@@ -65,3 +78,6 @@ volumes:
   frontend_static:
   certbot_data:
   ssl_certs:
+networks:
+  public:
+  private:
