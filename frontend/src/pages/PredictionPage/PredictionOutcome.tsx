@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler } from 'react';
-import { Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 
 interface PredictionOutcomeProps {
   prediction: boolean | null,
@@ -14,9 +14,11 @@ const PredictionOutcome: FC<PredictionOutcomeProps> = ({
     <Typography variant="h4">
       {`You are predicted to ${prediction ? 'NOT ' : ''}divorce.`}
     </Typography>
-    <Button variant="contained" size="large" onClick={resetForm}>
-      Reset
-    </Button>
+    <Box>
+      <Button variant="contained" size="large" onClick={resetForm}>
+        Reset
+      </Button>
+    </Box>
   </Stack>
 );
 
