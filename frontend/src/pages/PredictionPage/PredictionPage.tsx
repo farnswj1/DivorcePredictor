@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
-import { GridItem } from 'components';
+import { Container, Paper, Stack } from '@mui/material';
 import { APIService } from 'services';
 import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
@@ -36,22 +36,26 @@ const PredictionPage: FC = () => {
   };
 
   return (
-    <GridItem>
-      {
-        prediction !== null ? (
-          <PredictionOutcome
-            prediction={prediction}
-            resetForm={resetForm}
-          />
-        ) : (
-          <PredictionForm
-            handleSubmit={handleSubmit}
-            disabled={isLoading}
-            status={status}
-          />
-        )
-      }
-    </GridItem>
+    <Container>
+      <Stack justifyContent="center" alignItems="center">
+        <Paper>
+          {
+            prediction !== null ? (
+              <PredictionOutcome
+                prediction={prediction}
+                resetForm={resetForm}
+              />
+            ) : (
+              <PredictionForm
+                handleSubmit={handleSubmit}
+                disabled={isLoading}
+                status={status}
+              />
+            )
+          }
+        </Paper>
+      </Stack>
+    </Container>
   );
 };
 

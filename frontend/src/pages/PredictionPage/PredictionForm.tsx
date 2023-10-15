@@ -1,14 +1,14 @@
 import { FC, FormEventHandler } from 'react';
 import {
-  Box,
   Button,
   FormControl,
   FormControlLabel,
   FormLabel,
-  Grid,
   Radio,
   RadioGroup,
-  Typography
+  Stack,
+  Typography,
+  useMediaQuery
 } from '@mui/material';
 
 const QUESTIONS: string[] = [
@@ -80,31 +80,34 @@ const PredictionForm: FC<PredictionFormProps> = ({
   handleSubmit,
   disabled,
   status
-}) => (
-  <Box component="form" onSubmit={handleSubmit}>
-    <Box marginBottom={3}>
+}) => {
+  const enableRows: boolean = useMediaQuery('(min-width: 700px)');
+
+  return (
+    <Stack
+      component="form"
+      spacing={3}
+      justifyContent="start"
+      onSubmit={handleSubmit}
+    >
       <Typography variant="h3">
         Will it last?
       </Typography>
-    </Box>
-    <Box marginBottom={3}>
       <Typography variant="h6">
         Answer the following questions:
       </Typography>
-    </Box>
-    {
-      QUESTIONS.map((question, index) => {
-        const questionNumber: number = index + 1;
-        const radioNumber: string = 'q' + String(questionNumber).padStart(2, '0');
+      {
+        QUESTIONS.map((question, index) => {
+          const questionNumber: number = index + 1;
+          const radioNumber: string = 'q' + String(questionNumber).padStart(2, '0');
 
-        return (
-          <Box key={questionNumber} marginBottom={3}>
+          return (
             <FormControl component="fieldset" disabled={disabled}>
               <FormLabel component="legend">
                 {`${questionNumber}. ${question}`}
               </FormLabel>
               <RadioGroup
-                row
+                row={enableRows}
                 aria-label={radioNumber}
                 name={radioNumber}
               >
@@ -124,12 +127,15 @@ const PredictionForm: FC<PredictionFormProps> = ({
                 }
               </RadioGroup>
             </FormControl>
-          </Box>
-        );
-      })
-    }
-    <Grid container alignItems="center" spacing={2}>
-      <Grid item>
+          );
+        })
+      }
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="start"
+        alignItems="center"
+      >
         <Button
           type="submit"
           size="large"
@@ -138,27 +144,23 @@ const PredictionForm: FC<PredictionFormProps> = ({
         >
           Submit
         </Button>
-      </Grid>
-      {
-        (status === 403) && (
-          <Grid item>
+        {
+          (status === 403) && (
             <Typography color="error">
               Please wait 1 minute before submitting again.
             </Typography>
-          </Grid>
-        )
-      }
-      {
-        (status && status >= 500) && (
-          <Grid item>
+          )
+        }
+        {
+          (status && status >= 500) && (
             <Typography color="error">
               There is an issue with the server! Try again later!
             </Typography>
-          </Grid>
-        )
-      }
-    </Grid>
-  </Box>
-);
+          )
+        }
+      </Stack>
+    </Stack>
+  );
+};
 
 export default PredictionForm;

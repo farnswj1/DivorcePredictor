@@ -1,12 +1,17 @@
 import { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Box, createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import Routes from 'routes';
+import { Footer } from 'layouts';
 
 const App: FC = () => {
   const theme: Theme = createTheme({
     palette: {
       mode: 'light',
+      primary: {
+        main: pink[400]
+      },
       background: {
         default: '#fadadd'
       }
@@ -17,30 +22,21 @@ const App: FC = () => {
           root: {
             padding: '2rem',
             borderRadius: '2rem'
-          },
-        }
-      },
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            backgroundColor: '#fe4164',
-            '&:hover': {
-              backgroundColor: '#e52b50'
-            }
           }
         }
       }
-    },
+    }
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Box marginY={5}>
+      <Box marginY={5}>
+        <BrowserRouter>
           <Routes />
-        </Box>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Box>
+      <Footer />
     </ThemeProvider>
   );
 };
