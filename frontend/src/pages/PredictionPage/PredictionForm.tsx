@@ -135,6 +135,8 @@ const PredictionForm: FC<PredictionFormProps> = ({
         spacing={2}
         justifyContent="start"
         alignItems="center"
+        flexWrap="wrap"
+        useFlexGap
       >
         <Button
           type="submit"
