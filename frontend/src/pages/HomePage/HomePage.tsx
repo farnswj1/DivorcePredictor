@@ -14,11 +14,14 @@ const HomePage: FC = () => (
             Will your marriage last? Find out now!
           </Typography>
           <Box marginTop={5}>
-            <Link to="/prediction">
-              <Button variant="contained" size="large">
-                Click Here!
-              </Button>
-            </Link>
+            <Button
+              component={Link}
+              variant="contained"
+              size="large"
+              to="/prediction"
+            >
+              Click Here!
+            </Button>
           </Box>
         </Box>
       </Paper>

@@ -14,11 +14,14 @@ const PageNotFoundPage: FC = () => (
             It appears you are lost. Click the button below.
           </Typography>
           <Box marginTop={5}>
-            <Link to="/">
-              <Button variant="contained" size="large">
-                Home
-              </Button>
-            </Link>
+            <Button
+              component={Link}
+              variant="contained"
+              size="large"
+              to="/"
+            >
+              Home
+            </Button>
           </Box>
         </Box>
       </Paper>
