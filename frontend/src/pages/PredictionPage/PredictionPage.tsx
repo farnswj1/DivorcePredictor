@@ -1,10 +1,12 @@
 import { FC, FormEvent, useState } from 'react';
 import { Container, Paper, Stack } from '@mui/material';
 import { APIService } from 'services';
+import { setTitle } from 'utils';
 import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
 
 const PredictionPage: FC = () => {
+  setTitle('Will It Last?')
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<number | null>(null);
   const [prediction, setPrediction] = useState<boolean | null>(null);
