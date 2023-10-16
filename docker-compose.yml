@@ -38,7 +38,7 @@ services:
     image: frontend
     build: frontend
     volumes:
-      - frontend_static:/opt/app/build/:rw
+      - frontend_static:/opt/app/dist/:rw
     networks:
       - public
     depends_on:

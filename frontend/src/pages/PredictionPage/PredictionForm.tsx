@@ -102,7 +102,11 @@ const PredictionForm: FC<PredictionFormProps> = ({
           const radioNumber: string = 'q' + String(questionNumber).padStart(2, '0');
 
           return (
-            <FormControl component="fieldset" disabled={disabled}>
+            <FormControl
+              key={questionNumber}
+              component="fieldset"
+              disabled={disabled}
+            >
               <FormLabel component="legend">
                 {`${questionNumber}. ${question}`}
               </FormLabel>

@@ -10,6 +10,7 @@ The project uses the following:
 - NPM
 - React
 - Material-UI
+- Vite
 - PostgreSQL
 - Redis
 - Nginx
@@ -58,7 +59,7 @@ However, make sure to update the environment variables in
 The ```frontend``` directory must also have a ```.env``` file
 with the following variables:
 ```
-REACT_APP_API_URL=http://127.0.0.1
+VITE_API_URL=http://127.0.0.1
 ```
 The URL should be the endpoint of the backend server.
 
