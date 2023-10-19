@@ -14,6 +14,7 @@ The project uses the following:
 - PostgreSQL
 - Redis
 - Nginx
+- Certbot
 - Docker
 - Docker Compose
 
