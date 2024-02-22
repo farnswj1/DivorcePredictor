@@ -3,21 +3,20 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[dev-packages]
-
 [packages]
-django = "==4.2.10"
-djangorestframework = "==3.14.0"
-django-cors-headers = "==4.3.1"
+fastapi = "==0.109.2"
+pydantic = "==2.6.1"
+pydantic-settings = "==2.2.0"
+fastapi-limiter = "==0.1.6"
+python-dotenv = "==1.0.1"
 pandas = "==2.2.0"
-psycopg = "==3.1.18"
+scikit-learn = "==1.4.0"
 redis = {version = "==5.0.1", extras = ["hiredis"]}
-celery = "==5.3.6"
-django-celery-beat = "==2.5.0"
-scikit-learn = "==1.2.2"
+uvicorn = {version = "==0.27.1", extras = ["standard"]}
 gunicorn = "==21.2.0"
 supervisor = "==4.2.5"
-flower = "==2.0.1"
+
+[dev-packages]
 
 [requires]
 python_version = "3.12"

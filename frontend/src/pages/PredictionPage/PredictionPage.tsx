@@ -6,7 +6,7 @@ import PredictionForm from './PredictionForm';
 import PredictionOutcome from './PredictionOutcome';
 
 const PredictionPage: FC = () => {
-  setTitle('Will It Last?')
+  setTitle('Will It Last?');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<number | null>(null);
   const [prediction, setPrediction] = useState<boolean | null>(null);
@@ -19,9 +19,9 @@ const PredictionPage: FC = () => {
 
     const data: FormData = new FormData(event.currentTarget);
 
-    APIService.post('/api/divorces/prediction', data)
+    APIService.post('/api/prediction', data)
       .then(response => {
-        setPrediction(response.data.prediction);
+        setPrediction(response.data);
         setStatus(response.status);
       })
       .catch(error => {

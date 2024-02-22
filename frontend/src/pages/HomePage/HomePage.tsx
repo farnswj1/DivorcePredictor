@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
+import { Button, Container, Paper, Stack, Typography } from '@mui/material';
 import { setTitle } from 'utils';
 
 const HomePage: FC = () => {
@@ -8,26 +8,26 @@ const HomePage: FC = () => {
 
   return (
     <Container>
-      <Stack justifyContent="center" alignItems="center">
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        textAlign="center"
+      >
         <Paper>
-          <Box textAlign="center">
-            <Typography variant="h3">
-              Divorce Predictor
-            </Typography>
-            <Typography variant="h6">
-              Will your marriage last? Find out now!
-            </Typography>
-            <Box marginTop={5}>
-              <Button
-                component={Link}
-                variant="contained"
-                size="large"
-                to="/prediction"
-              >
-                Click Here!
-              </Button>
-            </Box>
-          </Box>
+          <Typography variant="h3">
+            Divorce Predictor
+          </Typography>
+          <Typography variant="h6" marginBottom={5}>
+            Will your marriage last? Find out now!
+          </Typography>
+          <Button
+            component={Link}
+            variant="contained"
+            size="large"
+            to="/prediction"
+          >
+            Click Here!
+          </Button>
         </Paper>
       </Stack>
     </Container>

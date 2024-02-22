@@ -5,13 +5,11 @@ This web app predicts whether or not a marriage will last.
 The project uses the following:
 - Python 3
 - TypeScript
-- Django
-- Celery
+- FastAPI
 - NPM
 - React
 - Material-UI
 - Vite
-- PostgreSQL
 - Redis
 - Nginx
 - Certbot
@@ -22,38 +20,14 @@ For additional information on project specifications, see
 ```backend/Pipfile``` for the backend server and
 ```frontend/package.json``` for the frontend respectively.
 
-### PostgreSQL
-In the `postgres` directory, create an `.env` file with the following
-configurations. It is highly recommended to use your own credentials
-instead of the values provided:
-```
-POSTGRES_DB=divorcepredictor
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-```
-
 ### Backend
 In the ```backend``` directory, create a ```.env``` file
 that contains the following environment variables:
 ```
-SECRET_KEY=somerandomstring
-
-DEBUG=False
 ALLOWED_HOSTS=localhost 127.0.0.1
-CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)$
-CSRF_TRUSTED_ORIGINS=http://localhost http://127.0.0.1
-
-DB_NAME=divorcepredictor
-DB_HOST=postgres
-DB_USER=postgres
-DB_PASSWORD=password
-DB_PORT=5432
-
+CORS_ALLOW_ORIGIN_REGEX=^https?://(localhost|127\.0\.0\.1)$
 REDIS_URL=redis://redis:6379
 ```
-The database variables can be changed as desired.
-However, make sure to update the environment variables in
-```docker-compose.yml``` as well.
 
 ### Frontend
 The ```frontend``` directory must also have a ```.env``` file
@@ -72,11 +46,6 @@ To build, run ```docker compose build```
 ## Running
 To run the web app, run ```docker compose up -d```, then
 go to http://localhost using your web browser.
-
-### Populating the Database
-This project provides data to use for the project.
-Populating the database should only be done once to avoid duplicate data.
-To do so, run ```docker exec -it backend python manage.py loaddata data.json```.
 
 ### Setting Up HTTPS With Certbot
 There are configurations already set up via `cli.ini` in the `certbot` directory.

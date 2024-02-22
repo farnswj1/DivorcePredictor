@@ -8,16 +8,6 @@ services:
       - redis_data:/data:rw
     networks:
       - private
-  postgres:
-    container_name: postgres
-    image: postgres:15
-    restart: always
-    env_file:
-      - ./postgres/.env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data:rw
-    networks:
-      - private
   backend:
     container_name: backend
     image: backend
@@ -31,7 +21,6 @@ services:
       - public
       - private
     depends_on:
-      - postgres
       - redis
   frontend:
     container_name: frontend
@@ -73,7 +62,6 @@ services:
       - nginx
 volumes:
   redis_data:
-  postgres_data:
   backend_static:
   frontend_static:
   certbot_data:

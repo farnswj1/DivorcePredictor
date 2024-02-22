@@ -71,10 +71,10 @@ const QUESTIONS: string[] = [
 const CHOICES: string[] = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'];
 
 interface PredictionFormProps {
-  handleSubmit: FormEventHandler,
-  disabled: boolean
-  status: number | null
-};
+  handleSubmit: FormEventHandler;
+  disabled: boolean;
+  status: number | null;
+}
 
 const PredictionForm: FC<PredictionFormProps> = ({
   handleSubmit,
@@ -151,14 +151,14 @@ const PredictionForm: FC<PredictionFormProps> = ({
           Submit
         </Button>
         {
-          (status === 403) && (
+          (status === 429) && (
             <Typography color="error">
               Please wait 1 minute before submitting again.
             </Typography>
           )
         }
         {
-          (status && status >= 500) && (
+          (status && status >= 400 && status !== 429) && (
             <Typography color="error">
               There is an issue with the server! Try again later!
             </Typography>

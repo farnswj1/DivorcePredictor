@@ -2,9 +2,9 @@ import { FC, MouseEventHandler } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 
 interface PredictionOutcomeProps {
-  prediction: boolean | null,
-  resetForm: MouseEventHandler<Element>
-};
+  prediction: boolean;
+  resetForm: MouseEventHandler<HTMLButtonElement>;
+}
 
 const PredictionOutcome: FC<PredictionOutcomeProps> = ({
   prediction,
