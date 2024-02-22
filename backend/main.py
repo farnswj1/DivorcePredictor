@@ -38,6 +38,6 @@ app.add_middleware(
 app.add_middleware(
     CORSMiddleware,
     allow_origin_regex=settings.CORS_ALLOW_ORIGIN_REGEX,
-    expose_headers=['*']
+    allow_methods=['POST']
 )
 app.include_router(router)
