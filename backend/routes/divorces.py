@@ -9,10 +9,6 @@ MODEL = get_ml_model()
 
 router = APIRouter(tags=['Divorces'])
 
-@router.get('/test')
-async def ping() -> bool:
-    return True
-
 
 @router.post('/prediction')
 async def predict(answers: Answers) -> bool:
