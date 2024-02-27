@@ -6,7 +6,6 @@ import pandas as pd
 
 MODEL = get_ml_model()
 
-
 router = APIRouter(tags=['Divorces'])
 
 
