@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState } from 'react';
-import { Container, Paper, Stack } from '@mui/material';
+import { Container, Paper } from '@mui/material';
+import { CenteringStack } from 'components';
 import { APIService } from 'services';
 import { setTitle } from 'utils';
 import PredictionForm from './PredictionForm';
@@ -39,7 +40,7 @@ const PredictionPage: FC = () => {
 
   return (
     <Container>
-      <Stack justifyContent="center" alignItems="center">
+      <CenteringStack>
         <Paper>
           {
             prediction !== null ? (
@@ -56,7 +57,7 @@ const PredictionPage: FC = () => {
             )
           }
         </Paper>
-      </Stack>
+      </CenteringStack>
     </Container>
   );
 };
