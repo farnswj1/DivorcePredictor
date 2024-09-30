@@ -11,8 +11,8 @@ fastapi-limiter = "==0.1.6"
 python-dotenv = "==1.0.1"
 pandas = "==2.2.3"
 scikit-learn = "==1.5.2"
-redis = {extras = ["hiredis"], version = "==5.0.8"}
-uvicorn = {extras = ["standard"], version = "==0.30.6"}
+redis = {extras = ["hiredis"], version = "==5.1.0"}
+uvicorn = {extras = ["standard"], version = "==0.31.0"}
 uvicorn-worker = "==0.2.0"
 gunicorn = "==23.0.0"
 supervisor = "==4.2.5"
