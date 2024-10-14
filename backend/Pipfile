@@ -4,15 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-fastapi = "==0.115.0"
+fastapi = "==0.115.2"
 pydantic = "==2.9.2"
 pydantic-settings = "==2.5.2"
 fastapi-limiter = "==0.1.6"
 python-dotenv = "==1.0.1"
 pandas = "==2.2.3"
 scikit-learn = "==1.5.2"
-redis = {extras = ["hiredis"], version = "==5.1.0"}
-uvicorn = {extras = ["standard"], version = "==0.31.0"}
+redis = {extras = ["hiredis"], version = "==5.1.1"}
+uvicorn = {extras = ["standard"], version = "==0.31.1"}
 uvicorn-worker = "==0.2.0"
 gunicorn = "==23.0.0"
 supervisor = "==4.2.5"
