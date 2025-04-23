@@ -1,8 +1,8 @@
 # base image
-FROM python:3.12-slim-bullseye
+FROM python:3.13-slim-bullseye
 
 # set environment variables
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 # expose port(s)
 EXPOSE 8000
