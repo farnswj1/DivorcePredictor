@@ -2,58 +2,61 @@ from pydantic import BaseModel, Field
 from typing_extensions import Annotated
 
 
+type Rating = Annotated[int, Field(ge=1, le=5)]
+
+
 class Answers(BaseModel):
-    q01: Annotated[int, Field(ge=1, le=5)]
-    q02: Annotated[int, Field(ge=1, le=5)]
-    q03: Annotated[int, Field(ge=1, le=5)]
-    q04: Annotated[int, Field(ge=1, le=5)]
-    q05: Annotated[int, Field(ge=1, le=5)]
-    q06: Annotated[int, Field(ge=1, le=5)]
-    q07: Annotated[int, Field(ge=1, le=5)]
-    q08: Annotated[int, Field(ge=1, le=5)]
-    q09: Annotated[int, Field(ge=1, le=5)]
-    q10: Annotated[int, Field(ge=1, le=5)]
-    q11: Annotated[int, Field(ge=1, le=5)]
-    q12: Annotated[int, Field(ge=1, le=5)]
-    q13: Annotated[int, Field(ge=1, le=5)]
-    q14: Annotated[int, Field(ge=1, le=5)]
-    q15: Annotated[int, Field(ge=1, le=5)]
-    q16: Annotated[int, Field(ge=1, le=5)]
-    q17: Annotated[int, Field(ge=1, le=5)]
-    q18: Annotated[int, Field(ge=1, le=5)]
-    q19: Annotated[int, Field(ge=1, le=5)]
-    q20: Annotated[int, Field(ge=1, le=5)]
-    q21: Annotated[int, Field(ge=1, le=5)]
-    q22: Annotated[int, Field(ge=1, le=5)]
-    q23: Annotated[int, Field(ge=1, le=5)]
-    q24: Annotated[int, Field(ge=1, le=5)]
-    q25: Annotated[int, Field(ge=1, le=5)]
-    q26: Annotated[int, Field(ge=1, le=5)]
-    q27: Annotated[int, Field(ge=1, le=5)]
-    q28: Annotated[int, Field(ge=1, le=5)]
-    q29: Annotated[int, Field(ge=1, le=5)]
-    q30: Annotated[int, Field(ge=1, le=5)]
-    q31: Annotated[int, Field(ge=1, le=5)]
-    q32: Annotated[int, Field(ge=1, le=5)]
-    q33: Annotated[int, Field(ge=1, le=5)]
-    q34: Annotated[int, Field(ge=1, le=5)]
-    q35: Annotated[int, Field(ge=1, le=5)]
-    q36: Annotated[int, Field(ge=1, le=5)]
-    q37: Annotated[int, Field(ge=1, le=5)]
-    q38: Annotated[int, Field(ge=1, le=5)]
-    q39: Annotated[int, Field(ge=1, le=5)]
-    q40: Annotated[int, Field(ge=1, le=5)]
-    q41: Annotated[int, Field(ge=1, le=5)]
-    q42: Annotated[int, Field(ge=1, le=5)]
-    q43: Annotated[int, Field(ge=1, le=5)]
-    q44: Annotated[int, Field(ge=1, le=5)]
-    q45: Annotated[int, Field(ge=1, le=5)]
-    q46: Annotated[int, Field(ge=1, le=5)]
-    q47: Annotated[int, Field(ge=1, le=5)]
-    q48: Annotated[int, Field(ge=1, le=5)]
-    q49: Annotated[int, Field(ge=1, le=5)]
-    q50: Annotated[int, Field(ge=1, le=5)]
-    q51: Annotated[int, Field(ge=1, le=5)]
-    q52: Annotated[int, Field(ge=1, le=5)]
-    q53: Annotated[int, Field(ge=1, le=5)]
-    q54: Annotated[int, Field(ge=1, le=5)]
+    q01: Rating
+    q02: Rating
+    q03: Rating
+    q04: Rating
+    q05: Rating
+    q06: Rating
+    q07: Rating
+    q08: Rating
+    q09: Rating
+    q10: Rating
+    q11: Rating
+    q12: Rating
+    q13: Rating
+    q14: Rating
+    q15: Rating
+    q16: Rating
+    q17: Rating
+    q18: Rating
+    q19: Rating
+    q20: Rating
+    q21: Rating
+    q22: Rating
+    q23: Rating
+    q24: Rating
+    q25: Rating
+    q26: Rating
+    q27: Rating
+    q28: Rating
+    q29: Rating
+    q30: Rating
+    q31: Rating
+    q32: Rating
+    q33: Rating
+    q34: Rating
+    q35: Rating
+    q36: Rating
+    q37: Rating
+    q38: Rating
+    q39: Rating
+    q40: Rating
+    q41: Rating
+    q42: Rating
+    q43: Rating
+    q44: Rating
+    q45: Rating
+    q46: Rating
+    q47: Rating
+    q48: Rating
+    q49: Rating
+    q50: Rating
+    q51: Rating
+    q52: Rating
+    q53: Rating
+    q54: Rating

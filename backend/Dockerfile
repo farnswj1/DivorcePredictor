@@ -1,20 +1,11 @@
-# base image
-FROM python:3.13-slim-bullseye
-
-# set environment variables
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm
 ENV PYTHONUNBUFFERED=1
-
-# expose port(s)
 EXPOSE 8000
-
-# set directory
 WORKDIR /opt/app
 
-# install dependencies and add application
-RUN pip install pipenv
-COPY Pipfile Pipfile.lock ./
-RUN pipenv install --system --deploy --ignore-pipfile
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen
 COPY . ./
 
-# run the app
-CMD ["supervisord", "-c", "supervisord.conf"]
+ENTRYPOINT ["uv", "run"]
+CMD ["fastapi", "run", "--workers", "4", "main.py"]

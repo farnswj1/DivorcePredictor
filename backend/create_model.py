@@ -51,5 +51,5 @@ def main() -> None:
     print(f"Model saved in {model_path}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

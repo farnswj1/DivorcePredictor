@@ -1,43 +1,22 @@
-from pydantic_settings import (
-    BaseSettings,
-    EnvSettingsSource,
-    PydanticBaseSettingsSource
-)
-from pydantic.fields import FieldInfo
-from typing import Any, List, Tuple, Type
+from pydantic import RedisDsn, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class EnvironmentSettingsSource(EnvSettingsSource):
-    def prepare_field_value(
-        self,
-        field_name: str,
-        field: FieldInfo,
-        value: Any,
-        value_is_complex: bool
-    ) -> Any:
-        if field.annotation == List[str]:
-            return value.split()
+class Settings(BaseSettings, case_sensitive=False):
+    """Application settings loaded from environment variables."""
 
-        return super().prepare_field_value(
-            field_name, field, value, value_is_complex
-        )
+    allowed_hosts: tuple[str, ...]
+    cors_allow_origin_regex: str
 
+    redis_url: RedisDsn
 
-class Settings(BaseSettings, case_sensitive=True):
-    ALLOWED_HOSTS: List[str]
-    CORS_ALLOW_ORIGIN_REGEX: str
-    REDIS_URL: str
+    model_config = SettingsConfigDict(enable_decoding=False)
 
-    @classmethod
-    def settings_customise_sources(
-        cls,
-        settings_cls: Type[BaseSettings],
-        init_settings: PydanticBaseSettingsSource,
-        env_settings: PydanticBaseSettingsSource,
-        dotenv_settings: PydanticBaseSettingsSource,
-        file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
-        return (EnvironmentSettingsSource(settings_cls),)
+    @field_validator("allowed_hosts", mode="before")
+    @staticmethod
+    def parse_str_to_tuple(value: str) -> tuple[str, ...]:
+        """Convert a space-delimited string into a tuple."""
+        return tuple(value.split())
 
 
-settings = Settings()
+settings = Settings()  # type: ignore
