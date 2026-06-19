@@ -24,7 +24,6 @@ class RateLimiter(BaseModel):
         key = f"ratelimiter:{self.namespace}:{client_ip}"
         count = await cache.incr(key)
 
-        print(f"Count: {count}, Limit: {self.limit}, Time: {self.time}")
         if count == 1:
             await cache.expire(key, self.time)
 

@@ -47,6 +47,23 @@ const reducer = (state: State, action: Action): State => {
 
 const initialState: State = { type: PageState.Idle };
 
-const usePageState = () => useReducer(reducer, initialState);
+interface UsePageStateReturn {
+  pageState: State;
+  renderIdleView: () => void;
+  renderFormView: () => void;
+  renderResultView: (prediction: boolean) => void;
+}
+
+const usePageState = (): UsePageStateReturn => {
+  const [pageState, dispatch] = useReducer(reducer, initialState);
+
+  const renderIdleView = () => dispatch({ type: PageState.Idle });
+  const renderFormView = () => dispatch({ type: PageState.Form });
+  const renderResultView = (prediction: boolean) => {
+    dispatch({ type: PageState.Result, prediction });
+  };
+
+  return { pageState, renderIdleView, renderFormView, renderResultView };
+};
 
 export default usePageState;

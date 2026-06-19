@@ -6,12 +6,12 @@ import FormView from './FormView';
 import ResultView from './ResultView';
 
 const HomePage: FC = () => {
-  const [pageState, dispatch] = usePageState();
-
-  const renderFormView = () => dispatch({ type: PageState.Form });
-  const renderResultView = (prediction: boolean) => {
-    dispatch({ type: PageState.Result, prediction });
-  };
+  const {
+    pageState,
+    renderIdleView,
+    renderFormView,
+    renderResultView
+  } = usePageState();
 
   switch (pageState.type) {
     case PageState.Idle:
@@ -19,7 +19,7 @@ const HomePage: FC = () => {
     case PageState.Form:
       return <FormView onResultReceived={renderResultView} />;
     case PageState.Result:
-      return <ResultView prediction={pageState.prediction} onReset={renderFormView} />;
+      return <ResultView prediction={pageState.prediction} onReset={renderIdleView} />;
     default:
       return null;
   }
