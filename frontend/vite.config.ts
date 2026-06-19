@@ -1,12 +1,15 @@
 import { defineConfig } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
-import tsConfigPaths from 'vite-tsconfig-paths';
-import react from '@vitejs/plugin-react-swc';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 
 export default defineConfig({
   plugins: [
     createHtmlPlugin({ minify: true, entry: 'src/index.tsx' }),
     react(),
-    tsConfigPaths()
-  ]
+    babel({ presets: [reactCompilerPreset()] })
+  ],
+  resolve: {
+    tsconfigPaths: true
+  }
 });

@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { Typography, TypographyProps } from '@mui/material';
+import { type FC } from 'react';
+import { Title, type TitleProps } from '@mantine/core';
 
-const HeaderTypography: FC<TypographyProps> = (props) => (
-  <Typography variant="h3" {...props} />
+const HeaderTypography: FC<TitleProps> = (props) => (
+  <Title order={2} {...props} />
 );
 
 export default HeaderTypography;

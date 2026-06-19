@@ -1,28 +1,28 @@
-import { FC } from 'react';
-import { Container, Paper, Typography } from '@mui/material';
-import { ButtonLink, CenteringStack, HeaderTypography } from 'components';
-import { setTitle } from 'utils';
+import { type FC } from 'react';
+import { usePageState } from '~/hooks';
+import { PageState } from '~/types';
+import IdleView from './IdleView';
+import FormView from './FormView';
+import ResultView from './ResultView';
 
 const HomePage: FC = () => {
-  setTitle();
+  const [pageState, dispatch] = usePageState();
 
-  return (
-    <Container>
-      <CenteringStack textAlign="center">
-        <Paper>
-          <HeaderTypography>
-            Divorce Predictor
-          </HeaderTypography>
-          <Typography variant="h6" marginBottom={5}>
-            Will your marriage last? Find out now!
-          </Typography>
-          <ButtonLink variant="contained" size="large" to="/prediction">
-            Click Here!
-          </ButtonLink>
-        </Paper>
-      </CenteringStack>
-    </Container>
-  );
+  const renderFormView = () => dispatch({ type: PageState.Form });
+  const renderResultView = (prediction: boolean) => {
+    dispatch({ type: PageState.Result, prediction });
+  };
+
+  switch (pageState.type) {
+    case PageState.Idle:
+      return <IdleView onStart={renderFormView} />;
+    case PageState.Form:
+      return <FormView onResultReceived={renderResultView} />;
+    case PageState.Result:
+      return <ResultView prediction={pageState.prediction} onReset={renderFormView} />;
+    default:
+      return null;
+  }
 };
 
 export default HomePage;

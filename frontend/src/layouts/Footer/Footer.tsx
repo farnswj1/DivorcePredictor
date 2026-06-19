@@ -1,18 +1,14 @@
-import { FC } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { type FC } from 'react';
+import { Container, Text } from '@mantine/core';
 
 const year = new Date().getFullYear();
 
 const Footer: FC = () => (
-  <Box component="footer" marginTop="auto">
-    <Container maxWidth="lg">
-      <Box textAlign="center" paddingY={3}>
-        <Typography variant="h6">
-          &copy; {year} Justin Farnsworth
-        </Typography>
-      </Box>
-    </Container>
-  </Box>
+  <Container component="footer" p="sm">
+    <Text size="sm" span ta="center">
+      &copy; {year} Justin Farnsworth. All rights reserved.
+    </Text>
+  </Container>
 );
 
 export default Footer;

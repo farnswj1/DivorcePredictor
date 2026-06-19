@@ -1,33 +1,27 @@
-import { FC } from 'react';
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { useRowContext } from 'hooks';
-import { CHOICES } from 'data';
+import { type FC } from 'react';
+import { Flex, Radio } from '@mantine/core';
+import { CHOICES } from '~/data';
 
 interface QuestionInputChoicesProps {
   name: string;
 }
 
-const QuestionInputChoices: FC<QuestionInputChoicesProps> = ({ name }) => {
-  const enableRows = useRowContext();
-
-  return (
-    <RadioGroup
-      row={enableRows}
-      aria-label={name}
-      name={name}
-    >
-      {
-        CHOICES.map((choice, value) => (
-          <FormControlLabel
-            key={choice}
-            value={value + 1}
-            control={<Radio required size="small" />}
-            label={choice}
-          />
-        ))
-      }
-    </RadioGroup>
-  );
-};
+const QuestionInputChoices: FC<QuestionInputChoicesProps> = ({ name }) => (
+  <Radio.Group name={name} required>
+    <Flex gap="sm" direction={{ base: 'column', sm: 'row' }}>
+    {
+      CHOICES.map((choice, value) => (
+        <Radio
+          key={choice}
+          value={String(value + 1)}
+          label={choice}
+          size="sm"
+          required
+        />
+      ))
+    }
+    </Flex>
+  </Radio.Group>
+);
 
 export default QuestionInputChoices;

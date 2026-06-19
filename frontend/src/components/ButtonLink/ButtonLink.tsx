@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
-import { Button, ButtonProps } from '@mui/material';
+import { type FC } from 'react';
+import { Link, type LinkProps } from 'react-router-dom';
+import { Button, type ButtonProps } from '@mantine/core';
 
 type ButtonLinkProps = LinkProps & ButtonProps;
 

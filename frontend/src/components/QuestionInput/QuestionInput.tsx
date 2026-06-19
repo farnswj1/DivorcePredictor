@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { FormControl, FormLabel } from '@mui/material';
-import { QuestionInputChoices } from 'components';
+import { type FC } from 'react';
+import { QuestionInputChoices } from '~/components';
+import { Fieldset } from '@mantine/core';
 
 interface QuestionInputProps {
   question: string;
@@ -16,12 +16,9 @@ const QuestionInput: FC<QuestionInputProps> = ({
   const radioNumber: string = 'q' + String(questionNumber).padStart(2, '0');
 
   return (
-    <FormControl component="fieldset" disabled={disabled}>
-      <FormLabel component="legend">
-        {`${questionNumber}. ${question}`}
-      </FormLabel>
+    <Fieldset legend={`${questionNumber}. ${question}`} disabled={disabled}>
       <QuestionInputChoices name={radioNumber} />
-    </FormControl>
+    </Fieldset>
   );
 };
 

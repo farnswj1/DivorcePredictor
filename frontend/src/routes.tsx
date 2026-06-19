@@ -1,11 +1,10 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Routes as BrowserRoutes, Route } from 'react-router-dom';
-import { PageNotFoundPage, HomePage, PredictionPage } from 'pages';
+import { PageNotFoundPage, HomePage } from '~/pages';
 
 const Routes: FC = () => (
   <BrowserRoutes>
     <Route path="/" element={<HomePage />} />
-    <Route path="/prediction" element={<PredictionPage />} />
     <Route path="*" element={<PageNotFoundPage />} />
   </BrowserRoutes>
 );
