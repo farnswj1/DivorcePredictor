@@ -15,7 +15,7 @@ const IdleView: FC<IdleViewProps> = ({ onStart }) => {
       title="Divorce Predictor"
       description="Will your marriage last? Find out now!"
       content={
-        <Button variant="contained" size="large" onClick={onStart}>
+        <Button onClick={onStart}>
           Click Here!
         </Button>
       }

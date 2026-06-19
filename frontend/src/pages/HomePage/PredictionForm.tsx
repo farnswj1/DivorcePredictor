@@ -60,11 +60,7 @@ const PredictionForm: FC<PredictionFormProps> = ({
         align="center"
         flex="wrap"
       >
-        <Button
-          type="submit"
-          variant="filled"
-          disabled={disabled}
-        >
+        <Button type="submit" loading={disabled}>
           Submit
         </Button>
       </Group>

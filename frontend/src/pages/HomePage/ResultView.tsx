@@ -14,7 +14,7 @@ const ResultView: FC<ResultViewProps> = ({
   <Section
     title={`You are predicted to ${prediction ? 'NOT ' : ''}divorce.`}
     content={
-      <Button variant="contained" size="large" onClick={onReset}>
+      <Button onClick={onReset}>
         Reset
       </Button>
     }

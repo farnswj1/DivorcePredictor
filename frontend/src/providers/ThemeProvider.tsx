@@ -34,7 +34,8 @@ const theme = createTheme({
   breakpoints: {
     sm: '40em'
   },
-  defaultRadius: 'md'
+  defaultRadius: 'md',
+  cursorType: 'pointer'
 });
 
 const ThemeProvider: FC<PropsWithChildren> = ({ children }) => (

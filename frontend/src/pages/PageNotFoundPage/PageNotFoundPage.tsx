@@ -10,7 +10,7 @@ const PageNotFoundPage: FC = () => {
       title="Page Not Found"
       description="It appears you are lost. Click the button below."
       content={
-        <ButtonLink variant="contained" size="large" to="/">
+        <ButtonLink to="/">
           Home
         </ButtonLink>
       }
