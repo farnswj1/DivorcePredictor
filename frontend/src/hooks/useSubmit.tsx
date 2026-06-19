@@ -1,6 +1,12 @@
 import { useReducer } from 'react';
 import { isAxiosError, type AxiosResponse } from 'axios';
-import { FetchStatus } from '~/types';
+
+enum FetchStatus {
+  Idle = 'Idle',
+  Pending = 'Pending',
+  Result = 'Result',
+  Error = 'Error'
+}
 
 interface IdleOrPendingState {
   readonly loading: boolean;
@@ -30,6 +36,16 @@ interface ErrorAction {
 
 type Action = IdleOrPendingAction | ResultAction | ErrorAction;
 
+interface UseSubmitOptions<T, U> {
+  onSubmit: (data: T) => Promise<AxiosResponse<U>>;
+  onSuccess: (response: AxiosResponse<U>) => void;
+}
+
+interface UseSubmitReturn<T> {
+  fetchState: State;
+  submit: (data: T) => void;
+}
+
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case FetchStatus.Idle:
@@ -52,6 +68,21 @@ const reducer = (state: State, action: Action): State => {
 
 const initialState: State = { loading: false, status: null };
 
-const useFetch = () => useReducer<State, [action: Action]>(reducer, initialState);
+const useSubmit = <T, U>({
+  onSubmit,
+  onSuccess
+}: UseSubmitOptions<T, U>): UseSubmitReturn<T> => {
+  const [fetchState, dispatch] = useReducer<State, [action: Action]>(reducer, initialState);
 
-export default useFetch;
+  const submit = (data: T) => {
+    dispatch({ type: FetchStatus.Pending });
+
+    onSubmit(data)
+      .then((response) => onSuccess(response))
+      .catch((error: unknown) => dispatch({ type: FetchStatus.Error, error }));
+  };
+
+  return { fetchState, submit };
+};
+
+export default useSubmit;

@@ -1,8 +1,7 @@
 import { type FC, type SubmitEvent } from 'react';
 import { Section } from '~/components';
 import { APIService } from '~/services';
-import { useFetch } from '~/hooks';
-import { FetchStatus } from '~/types';
+import { useSubmit } from '~/hooks';
 import PredictionForm from './PredictionForm';
 
 interface FormViewProps {
@@ -10,17 +9,15 @@ interface FormViewProps {
 }
 
 const FormView: FC<FormViewProps> = ({ onResultReceived }) => {
-  const [{ loading, status }, dispatch] = useFetch();
+  const { fetchState: { loading, status }, submit } = useSubmit({
+    onSubmit: (data) => APIService.submitQuestionnaire(data),
+    onSuccess: ({ data }) => onResultReceived(data)
+  });
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch({ type: FetchStatus.Pending });
-
     const data = new FormData(event.currentTarget);
-
-    APIService.submitQuestionnaire<FormData>(data)
-      .then((response) => onResultReceived(response.data))
-      .catch((error: unknown) => dispatch({ type: FetchStatus.Error, error }));
+    submit(data);
   };
 
   return (
