@@ -7,6 +7,8 @@ from dependencies.cache import DependsCache
 
 
 class RateLimiter(BaseModel):
+    """Rate limiter for the API that uses Redis as the storage backend."""
+
     namespace: str = Field(min_length=1, max_length=100)
     limit: int = Field(ge=1, le=1_000_000)
     time: int = Field(ge=1, le=3_600)

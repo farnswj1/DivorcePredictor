@@ -7,6 +7,8 @@ type Rating = Annotated[int, Field(ge=1, le=5)]
 
 
 class Answers(BaseModel):
+    """Answers to the divorce prediction questionnaire."""
+
     q01: Rating
     q02: Rating
     q03: Rating
