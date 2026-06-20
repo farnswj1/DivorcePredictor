@@ -27,5 +27,5 @@ class RateLimiter(BaseModel):
         if count > self.limit:
             raise HTTPException(
                 status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-                detail="Too many requests"
+                detail="Too many requests",
             )

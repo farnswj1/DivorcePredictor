@@ -13,8 +13,7 @@ class Settings(BaseSettings, case_sensitive=False):
     redis_url: RedisDsn
 
     model_config: ClassVar[SettingsConfigDict] = SettingsConfigDict(
-        enable_decoding=False,
-        frozen=True
+        enable_decoding=False, frozen=True
     )
 
     @field_validator("allowed_hosts", mode="before")
