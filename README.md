@@ -20,12 +20,12 @@ The project uses the following:
 - Docker Compose
 
 For additional information on project specifications, see
-```backend/Pipfile``` for the backend server and
-```frontend/package.json``` for the frontend respectively.
+`backend/Pipfile` for the backend server and
+`frontend/package.json` for the frontend respectively.
 
 ### Backend
 
-In the ```backend``` directory, create a ```.env``` file
+In the `backend` directory, create a `.env` file
 that contains the following environment variables:
 
 ```shell
@@ -36,7 +36,7 @@ REDIS_URL=redis://redis:6379
 
 ### Frontend
 
-The ```frontend``` directory must also have a ```.env``` file
+The `frontend` directory must also have a `.env` file
 with the following variables:
 
 ```shell
@@ -50,11 +50,11 @@ The URL should be the endpoint of the backend server.
 The project uses Docker. Ensure Docker and Docker Compose are installed
 before continuing.
 
-To build, run ```docker compose build```
+To build, run `docker compose build`
 
 ## Running
 
-To run the web app, run ```docker compose up -d```, then
+To run the web app, run `docker compose up -d`, then
 go to <http://localhost> using your web browser.
 
 ### Setting Up HTTPS With Certbot
