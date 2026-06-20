@@ -6,8 +6,8 @@ dist/
 wheels/
 *.egg-info
 
-media/
-!media/default.png
+# Ruff
+.ruff_cache/
 
 # Virtual environments
 .venv
