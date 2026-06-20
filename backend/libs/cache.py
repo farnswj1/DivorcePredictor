@@ -11,9 +11,7 @@ _pool: Final[ConnectionPool] = ConnectionPool.from_url(
 )
 
 # Register the script once at import time. No connection is opened to Redis.
-_incr_with_expiry_script: Final[AsyncScript] = Redis(
-    connection_pool=_pool
-).register_script(
+_incr_with_expiry_script: Final[AsyncScript] = Redis(connection_pool=_pool).register_script(
     """
     local count = redis.call('INCR', KEYS[1])
 
@@ -42,9 +40,7 @@ class Cache:
 
     async def incr_with_expiry(self, key: str, time: int) -> int:
         """Atomically increment the key's value by 1, setting its expiry on the first increment."""
-        return int(
-            await _incr_with_expiry_script(keys=[key], args=[time], client=self._client)
-        )
+        return int(await _incr_with_expiry_script(keys=[key], args=[time], client=self._client))
 
     async def __aenter__(self) -> Self:
         return self

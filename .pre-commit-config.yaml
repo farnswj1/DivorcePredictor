@@ -5,4 +5,8 @@ repos:
       - id: ruff
         name: Ruff Linter (Backend)
         files: ^backend/
-        args: [--config=backend/pyproject.toml]
+        args: ["--fix", "--config", "backend/pyproject.toml"]
+      - id: ruff-format
+        name: Ruff Formatter (Backend)
+        files: ^backend/
+        args: ["--config", "backend/pyproject.toml"]

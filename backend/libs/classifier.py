@@ -1,7 +1,7 @@
-import joblib
 from pathlib import Path
 from typing import Final
 
+import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
