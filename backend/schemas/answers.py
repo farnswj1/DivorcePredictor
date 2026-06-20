@@ -1,5 +1,6 @@
+from typing import Annotated
+
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 
 type Rating = Annotated[int, Field(ge=1, le=5)]

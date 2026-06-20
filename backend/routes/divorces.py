@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from schemas import Answers
 from libs.classifier import Classifier
+from schemas import Answers
 
 
 router = APIRouter(tags=["Divorces"])
