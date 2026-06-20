@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "fastapi[standard]>=0.137.2",
+    "fastapi[standard]==0.138.0",
     "gunicorn>=26.0.0",
     "pandas>=3.0.3",
     "pydantic>=2.13.4",
