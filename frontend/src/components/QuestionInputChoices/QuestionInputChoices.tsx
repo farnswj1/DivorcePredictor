@@ -1,6 +1,7 @@
 import { type FC } from 'react';
 import { Flex, Radio } from '@mantine/core';
-import { CHOICES } from '~/data';
+
+const CHOICES = ['Never', 'Seldom', 'Averagely', 'Frequently', 'Always'] as const;
 
 interface QuestionInputChoicesProps {
   name: string;
