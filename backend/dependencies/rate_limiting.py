@@ -1,8 +1,9 @@
 from typing import ClassVar
 
-from fastapi import HTTPException, Request, status
+from fastapi import Request
 from pydantic import BaseModel, ConfigDict, Field
 
+from core.exceptions import TooManyRequestsError
 from dependencies.cache import DependsCache
 
 
@@ -22,7 +23,4 @@ class RateLimiter(BaseModel):
         count = await cache.incr_with_expiry(key, self.time)
 
         if count > self.limit:
-            raise HTTPException(
-                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-                detail="Too many requests",
-            )
+            raise TooManyRequestsError()

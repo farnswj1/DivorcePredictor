@@ -3,7 +3,7 @@ from typing import Final, Self
 from redis.asyncio import ConnectionPool, Redis
 from redis.commands.core import AsyncScript
 
-from config import settings
+from core.config import settings
 
 
 _pool: Final[ConnectionPool] = ConnectionPool.from_url(
