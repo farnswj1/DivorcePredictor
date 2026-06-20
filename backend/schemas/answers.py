@@ -1,6 +1,6 @@
-from typing import Annotated
+from typing import Annotated, ClassVar
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 type Rating = Annotated[int, Field(ge=1, le=5)]
@@ -63,3 +63,5 @@ class Answers(BaseModel):
     q52: Rating
     q53: Rating
     q54: Rating
+
+    model_config: ClassVar[ConfigDict] = ConfigDict(frozen=True)

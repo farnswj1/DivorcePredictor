@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from pydantic import RedisDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -10,7 +12,10 @@ class Settings(BaseSettings, case_sensitive=False):
 
     redis_url: RedisDsn
 
-    model_config = SettingsConfigDict(enable_decoding=False)
+    model_config: ClassVar[SettingsConfigDict] = SettingsConfigDict(
+        enable_decoding=False,
+        frozen=True
+    )
 
     @field_validator("allowed_hosts", mode="before")
     @staticmethod

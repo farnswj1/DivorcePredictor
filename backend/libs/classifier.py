@@ -1,5 +1,6 @@
 import joblib
 from pathlib import Path
+from typing import ClassVar, Final
 
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -16,7 +17,7 @@ def _get_ml_model(path: str) -> RandomForestClassifier:
 class Classifier:
     """Classifier for predicting whether or not a marriage will last."""
 
-    _model: RandomForestClassifier = _get_ml_model("model.joblib")
+    _model: ClassVar[RandomForestClassifier] = _get_ml_model("model.joblib")
 
     @staticmethod
     def predict(data: Answers) -> bool:

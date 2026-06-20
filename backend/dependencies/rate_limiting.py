@@ -1,7 +1,7 @@
-from typing import Any, Coroutine
+from typing import ClassVar
 
 from fastapi import HTTPException, Request, status
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from dependencies.cache import DependsCache
 
@@ -13,14 +13,9 @@ class RateLimiter(BaseModel):
     limit: int = Field(ge=1, le=1_000_000)
     time: int = Field(ge=1, le=3_600)
 
-    def __hash__(self) -> int:
-        return hash((self.namespace, self.limit, self.time))
+    model_config: ClassVar[ConfigDict] = ConfigDict(frozen=True)
 
-    async def __call__(
-        self,
-        request: Request,
-        cache: DependsCache
-    ) -> Coroutine[Any, Any, None]:
+    async def __call__(self, request: Request, cache: DependsCache) -> None:
         """Verify that the user has not sent too many requests."""
         client_ip = request.client.host if request.client else ""
         key = f"ratelimiter:{self.namespace}:{client_ip}"
