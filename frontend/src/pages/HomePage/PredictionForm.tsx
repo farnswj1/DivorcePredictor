@@ -28,13 +28,13 @@ const PredictionForm: FC<PredictionFormProps> = ({
   disabled,
   status
 }) => {
-  const errorMessage = getErrorMessage(status);
-
   useEffect(() => {
-    if (errorMessage) {
-      notifications.show({ message: errorMessage, color: 'error' });
+    const message = getErrorMessage(status);
+
+    if (message) {
+      notifications.show({ message, color: 'error' });
     }
-  }, [errorMessage]);
+  }, [status]);
 
   return (
     <Stack
@@ -54,7 +54,6 @@ const PredictionForm: FC<PredictionFormProps> = ({
         ))
       }
       <Group
-        dir="row"
         gap="sm"
         justify="flex-start"
         align="center"
