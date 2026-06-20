@@ -1,4 +1,4 @@
-from typing import ClassVar
+from typing import ClassVar, Final
 
 from pydantic import RedisDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -23,4 +23,4 @@ class Settings(BaseSettings, case_sensitive=False):
         return tuple(value.split())
 
 
-settings = Settings()  # type: ignore
+settings: Final[Settings] = Settings()  # type: ignore

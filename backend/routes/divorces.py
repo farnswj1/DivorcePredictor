@@ -1,10 +1,12 @@
+from typing import Final
+
 from fastapi import APIRouter
 
 from libs.classifier import Classifier
 from schemas import Answers
 
 
-router = APIRouter(tags=["Divorces"])
+router: Final[APIRouter] = APIRouter(tags=["Divorces"])
 
 
 @router.post("/prediction")

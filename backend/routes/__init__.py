@@ -1,10 +1,12 @@
+from typing import Final
+
 from fastapi import APIRouter, Depends
 
 from dependencies.rate_limiting import RateLimiter
 from routes.divorces import router as divorces_router
 
 
-router = APIRouter(
+router: Final[APIRouter] = APIRouter(
     prefix="/api",
     dependencies=[Depends(RateLimiter(namespace="api", limit=1, time=60))],
 )

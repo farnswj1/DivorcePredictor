@@ -1,3 +1,5 @@
+from typing import Final
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -7,7 +9,7 @@ from config import settings
 from routes import router
 
 
-app = FastAPI(
+app: Final[FastAPI] = FastAPI(
     title="Divorce Predictor API",
     description="This is the API for the Divorce Predictor application.",
     version="1.0.0",

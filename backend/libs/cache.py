@@ -1,14 +1,19 @@
-from typing import Self
+from typing import Final, Self
 
 from redis.asyncio import ConnectionPool, Redis
+from redis.commands.core import AsyncScript
 
 from config import settings
 
 
-_pool = ConnectionPool.from_url(str(settings.redis_url), decode_responses=True)
+_pool: Final[ConnectionPool] = ConnectionPool.from_url(
+    str(settings.redis_url), decode_responses=True
+)
 
 # Register the script once at import time. No connection is opened to Redis.
-_incr_with_expiry_script = Redis(connection_pool=_pool).register_script(
+_incr_with_expiry_script: Final[AsyncScript] = Redis(
+    connection_pool=_pool
+).register_script(
     """
     local count = redis.call('INCR', KEYS[1])
 
