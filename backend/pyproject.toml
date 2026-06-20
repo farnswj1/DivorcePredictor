@@ -30,7 +30,6 @@ select = ["B", "E", "F", "I", "UP", "W"]
 [tool.ruff.lint.isort]
 lines-after-imports = 2
 known-first-party = [
-    "classifiers",
     "config",
     "dependencies",
     "libs",
