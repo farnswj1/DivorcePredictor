@@ -19,10 +19,7 @@ class RateLimiter(BaseModel):
         """Verify that the user has not sent too many requests."""
         client_ip = request.client.host if request.client else ""
         key = f"ratelimiter:{self.namespace}:{client_ip}"
-        count = await cache.incr(key)
-
-        if count == 1:
-            await cache.expire(key, self.time)
+        count = await cache.incr_with_expiry(key, self.time)
 
         if count > self.limit:
             raise HTTPException(
