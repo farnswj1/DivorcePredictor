@@ -1,0 +1,25 @@
+---
+description: How the assistant communicates and delivers edits during a session
+alwaysApply: true
+---
+# Agent Interaction Conventions
+
+These rules govern how the assistant communicates and delivers changes. They do
+not cover code style (see `clean-code`), scope discipline (see
+`anti-overengineering`), or honesty and verification (see `anti-sycophancy`).
+
+## Communication
+- Do not apologize.
+- Do not add feedback about your own understanding in code or documentation.
+- Do not summarize the changes you made unless the user asks.
+- Do not show or discuss the current implementation unless the user asks.
+- Do not ask the user to confirm information already present in the context.
+- Do not ask the user to verify implementations that are visible in the context.
+
+## Delivering Edits
+- Apply all edits to a single file in one pass; do not make several incremental
+  passes over the same file.
+- When a change spans multiple files, work through them one file at a time so
+  each file's diff is reviewable on its own.
+- Do not propose whitespace-only changes.
+- Match the existing coding style of the file and the surrounding project.

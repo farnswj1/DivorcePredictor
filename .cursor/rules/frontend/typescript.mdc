@@ -1,0 +1,59 @@
+---
+description: TypeScript language conventions (typing, naming, error types, organization)
+globs: frontend/**/*.ts, frontend/**/*.tsx, frontend/**/*.d.ts
+alwaysApply: false
+---
+# TypeScript Language Conventions
+
+Conventions for writing TypeScript in this project. For React and component
+patterns, see `react`. For comment style, see `clean-code`. For scope and
+pattern discipline, see `anti-overengineering`. For commit messages, see
+`git-commits`.
+
+## Core Principles
+- Write straightforward, readable, maintainable code.
+- Use strong typing; avoid `any` and prefer `unknown` for genuinely unknown types.
+- Enable and rely on strict TypeScript configuration.
+
+## Naming Conventions
+- Types, interfaces, classes: PascalCase.
+- Variables, functions, methods: camelCase.
+- Files and directories: kebab-case.
+- Constants and environment variables: UPPER_CASE.
+- Use descriptive names with auxiliary verbs (e.g. `isLoading`, `hasError`).
+
+## Types and Interfaces
+- For data that is validated or crosses a boundary (API input/output, forms),
+  define a Zod schema and infer the type from it.
+- For internal object shapes that need no runtime validation, prefer an
+  interface; use `type` for unions, intersections, and mapped types.
+- Use `readonly` for immutable properties.
+- Leverage discriminated unions and built-in utility types; reach for generics
+  for genuinely reusable type patterns.
+- Use type guards for runtime type checking; avoid type assertions unless
+  necessary.
+- When an import is used only as a type, use `import type`.
+
+## Functions
+- Use descriptive verb-noun names (e.g. `getUserData`).
+- Use arrow functions for callbacks and simple operations; use default
+  parameters and object destructuring.
+- Give exported functions explicit return types.
+- Prefer `async`/`await` over raw Promises and handle rejections.
+
+## Error Handling
+- Create custom error types for domain-specific errors.
+- Use typed `catch` clauses and implement proper null checking.
+
+## Code Organization
+- Keep type definitions close to where they are used; co-locate component props
+  with their components.
+- Export shared types from dedicated type files and place shared types in a
+  `types` directory; use barrel exports (`index.ts`) where they aid organization.
+
+## Documentation
+- Follow Google's Technical Writing Style Guide: active voice, present tense,
+  clear and concise, logical order, lists and tables where appropriate.
+- Write JSDoc only on the exported/public API surface (functions, classes,
+  types, interfaces), using TypeDoc-compatible tags. Do not add JSDoc or
+  comments that restate the code.

@@ -1,0 +1,70 @@
+---
+description: FastAPI backend best practices and patterns for building Python web APIs
+globs: backend/**/*.py
+alwaysApply: false
+---
+# FastAPI Backend Guidelines
+
+You are an expert in Python, FastAPI, and scalable API development.
+
+## Core Principles
+- Write concise, technical Python with accurate type hints on every signature.
+- Prefer functional, declarative code: use plain functions for routes, logic,
+  and utilities. Reserve classes for the places they are required —  Pydantic
+  `BaseModel` schemas and SQLAlchemy ORM models. Avoid deep inheritance; use
+  shallow model inheritance only when it removes real duplication.
+- Prefer iteration and modularization over duplication.
+- Use descriptive names with auxiliary verbs (e.g. `is_active`, `has_permission`).
+- Use lowercase-with-underscores for directories and files (e.g. `routers/user_routes.py`).
+- Favor named exports for routes and utilities.
+- Use the Receive an Object, Return an Object (RORO) pattern.
+- Use `def` for synchronous/pure functions and `async def` for I/O-bound work.
+
+## Project Structure
+- Organize routes by domain; keep an exported router, sub-routes, utilities,
+  static content, and types (models, schemas) per module.
+- Use configuration management for settings; rely on FastAPI's dependency
+  injection for shared resources and state.
+- Use middleware for logging, error monitoring, and performance concerns.
+- Prefer lifespan context managers over `@app.on_event` for startup/shutdown.
+
+## Models and Validation
+- Use Pydantic v2 `BaseModel` for all request/response validation and schemas;
+  prefer models over raw dictionaries.
+- Keep models organized and serialization explicit.
+
+## API Design and Error Handling
+- Use correct HTTP methods, status codes, and declarative routes with explicit
+  return type annotations.
+- Handle errors and edge cases first with guard clauses and early returns; place
+  the happy path last. Avoid unnecessary `else` after a return.
+- Raise `HTTPException` for expected errors, modeled as specific HTTP responses.
+- Handle unexpected errors with middleware and structured logging.
+- Use custom error types/factories for consistent error handling.
+- Document endpoints via OpenAPI.
+
+## Database
+- Use SQLAlchemy 2.0 with async drivers (`asyncpg`, `aiomysql`).
+- Use connection pooling, explicit transactions, and proper migrations.
+- Handle and log database errors; optimize queries where measured.
+
+## Authentication and Security
+- Implement JWT auth, password hashing, and role-based access where required.
+- Configure CORS, rate limiting, input validation, and security headers.
+- Keep secrets in environment variables, never in source.
+
+## Performance
+- Minimize blocking I/O; use async for all database and external API calls.
+- Cache static and frequently accessed data (e.g. Redis) when measured to help.
+- Use background tasks for non-critical work and lazy loading for large datasets.
+- Track response time, latency, and throughput.
+
+## Dependencies
+- FastAPI, Pydantic v2, async DB libraries (`asyncpg`/`aiomysql`), SQLAlchemy 2.0.
+
+## Testing and Documentation
+- Write unit and integration tests with fixtures and mocking; cover error paths.
+- Use docstrings on the public API surface and keep OpenAPI docs current.
+
+Refer to the FastAPI documentation for Data Models, Path Operations, and
+Middleware for further detail.

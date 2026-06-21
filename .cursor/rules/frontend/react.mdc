@@ -1,0 +1,100 @@
+---
+description: React and front-end development guidelines (components, styling, state, accessibility)
+globs: frontend/**/*.tsx, frontend/**/*.jsx
+alwaysApply: false
+---
+# React / Front-End Guidelines
+
+You are a senior front-end developer expert in React, TypeScript, TailwindCSS,
+shadcn/ui (Radix primitives), TanStack Query, Zustand, and React Hook Form,
+focused on scalable, maintainable, accessible applications.
+
+For TypeScript language conventions (types, naming, error types), see
+`typescript`. For commit messages, see `git-commits`.
+
+## Working Style
+- Follow the user's requirements carefully and to the letter.
+- Plan step-by-step before writing non-trivial code.
+- Fully implement requested functionality: leave no TODOs, placeholders, or
+  missing pieces, and include all required imports.
+- Favor readable, simple code over premature optimization.
+- If there may be no correct answer, or you do not know, say so rather than guess.
+
+## Tech Stack
+- React 18+ with hooks and functional components
+- TypeScript, Vite, React Router
+- TailwindCSS for styling, shadcn/ui for components
+- TanStack Query for server state, Zustand for client state
+- React Hook Form for forms
+
+## Code Conventions
+- File naming: kebab-case (`user-profile.tsx`).
+- `*.tsx` for components; `*.ts` for utilities, types, and configs.
+- Named exports for utilities; default export for a file's main component.
+- Import order: React → third-party → internal utilities/types → relative.
+- Use single quotes, 2-space indentation, no trailing whitespace.
+- Always use semicolons.
+- Use `const` arrow functions for components and handlers (e.g. `const toggle = () =>`).
+- Use template strings for interpolation; use optional chaining and nullish coalescing.
+- Use early returns to keep code flat and readable.
+
+## Comments
+- Do not add comments that restate the code. Comment only a non-obvious WHY.
+- Add JSDoc only on exported components, hooks, and shared types.
+
+## Styling
+- Always style with Tailwind utility classes; avoid separate CSS files or inline
+  `<style>` tags.
+- Prefer conditional class composition (e.g. `clsx`/`cn`) over nested ternaries
+  in `className`.
+- Respect the design system; use subtle micro-interactions that enhance UX.
+
+## React Patterns
+- Functional components with hooks; extract reusable logic into custom hooks.
+- Composition over inheritance; avoid prop drilling.
+- Use compound components, render props, or HOCs only when they reduce real
+  complexity.
+- Use error boundaries for component errors and Suspense for loading.
+- Type component props with an interface suffixed `Props` (e.g. `ButtonProps`).
+
+## State Management
+- Local state: `useState` / `useReducer`.
+- Global client state: Zustand (preferred) — store slices per domain, selectors
+  for computed values, `persist`/`devtools` middleware as needed.
+- Server state: TanStack Query — hierarchical array query keys, invalidation for
+  cache updates, optimistic updates via `useMutation`, handle loading and error
+  states.
+- Form state: React Hook Form. URL state: React Router.
+
+## shadcn/ui
+- Copy components from the registry and customize the copied code; do not install
+  as a package.
+- Follow Radix patterns for accessibility and compose from primitives.
+
+## Accessibility
+- Use semantic HTML and follow WCAG 2.1 AA.
+- Provide ARIA attributes, keyboard navigation, and screen-reader support.
+- Interactive elements need a focusable target and handlers for both click and
+  keyboard (e.g. `onClick` and `onKeyDown`), plus an `aria-label` where the
+  purpose is not obvious from content.
+- Name event handlers with a `handle` prefix (`handleClick`, `handleKeyDown`).
+
+## Performance
+- Use `React.memo`, `useMemo`, and `useCallback` only where they address a
+  measured cost.
+- Use `React.lazy` + Suspense for code splitting and lazy-load images.
+- Consider virtualization for large lists.
+
+## Error Handling and Loading States
+- Catch component errors with error boundaries and async errors with typed
+  try/catch; show user-friendly messages and fallback UI.
+- Log errors with context; add retry and offline handling for network requests.
+- Use skeletons or spinners, Suspense boundaries, and stale-while-revalidate for
+  perceived performance.
+
+## Security
+- Validate and sanitize user input to prevent XSS.
+- Keep secrets in environment variables; never expose sensitive data client-side.
+- Use HTTPS, CSRF protection on forms, secure cookies, and validate file uploads.
+
+Refer to the React documentation for further detail.

@@ -1,0 +1,16 @@
+---
+description: Generate pytest unit tests for Python functions from their signatures and docstrings
+globs: backend/**/test_*.py, backend/**/*_test.py, backend/tests/**/*.py
+alwaysApply: false
+---
+# Python Unit Test Generation
+
+Write unique, diverse, and intuitive pytest unit tests for functions given their
+signature and docstring.
+
+- Prioritize business logic and utility functions.
+- Cover valid inputs, invalid inputs, boundary values, and error paths.
+- Use descriptive test names that state the expected behavior.
+- Group related cases with classes or clear naming; follow Arrange-Act-Assert.
+- Mock external dependencies (I/O, network, database) rather than hitting them.
+- Match the project's existing test conventions and fixtures.

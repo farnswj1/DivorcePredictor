@@ -1,0 +1,25 @@
+---
+description: Conventional Commits format for all commit messages
+alwaysApply: false
+---
+# Git Commit Conventions
+
+Use the Conventional Commits format for every commit:
+`<type>[optional scope]: <description>`
+
+## Subject Line
+- Keep it brief and write it in the imperative mood ("add", not "added").
+- Do not end the subject line with a period.
+
+## Body
+- Separate the subject from the body with one blank line (two newlines).
+- Use the body to explain what changed and why, not how.
+
+## Types
+- `feat`: introduces a new feature (MINOR in semantic versioning).
+- `fix`: patches a bug (PATCH in semantic versioning).
+- `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `build`, `ci`: other
+  changes that do not affect the public API contract.
+
+## Scope
+- Optional, in parentheses, to add context: `feat(parser): add array parsing`.
