@@ -23,4 +23,4 @@ class Settings(BaseSettings, case_sensitive=False):
         return tuple(value.split())
 
 
-settings: Final[Settings] = Settings()  # type: ignore
+settings: Final[Settings] = Settings()  # ty: ignore[missing-argument]
