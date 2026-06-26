@@ -17,7 +17,7 @@ def create_app() -> FastAPI:
         redoc_url="/api/redoc",
         openapi_url="/api/openapi.json",
     )
-    app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.allowed_hosts)
+    app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=settings.allowed_hosts)  # type: ignore
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.allowed_hosts)
     app.add_middleware(
         CORSMiddleware,

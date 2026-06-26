@@ -10,3 +10,10 @@ repos:
         name: Ruff Formatter (Backend)
         files: ^backend/
         args: ["--config", "backend/pyproject.toml"]
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.54
+    hooks:
+      - id: ty
+        name: Ty Linter (Backend)
+        files: ^backend/
+        args: ["--project", "backend"]
