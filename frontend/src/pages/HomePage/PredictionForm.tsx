@@ -3,6 +3,7 @@ import { Button, Group, Stack } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { QuestionInput } from '~/components';
 import { QUESTIONS } from '~/data';
+import classes from './PredictionForm.module.css';
 
 const getErrorMessage = (status: number | null): string | null => {
   switch (status) {
@@ -32,7 +33,7 @@ const PredictionForm: FC<PredictionFormProps> = ({
     const message = getErrorMessage(status);
 
     if (message) {
-      notifications.show({ message, color: 'error' });
+      notifications.show({ message, color: 'error', classNames: classes });
     }
   }, [status]);
 
