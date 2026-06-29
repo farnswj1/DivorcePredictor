@@ -9,6 +9,6 @@ export default class APIService {
   });
 
   static async submitQuestionnaire<D = FormData>(data: D): Promise<AxiosResponse<boolean>> {
-    return this.client.post<string, AxiosResponse<boolean>, D>('/api/prediction', data);
+    return this.client.post<string, AxiosResponse<boolean>, D>('/api/v1/prediction', data);
   }
 }
