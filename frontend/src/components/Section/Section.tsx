@@ -1,5 +1,5 @@
 import { type FC, type ReactNode } from 'react';
-import { Text } from '@mantine/core';
+import { Box, Stack, Text } from '@mantine/core';
 import { HeaderTypography, Paper } from '~/components';
 
 interface SectionProps {
@@ -16,15 +16,19 @@ const Section: FC<SectionProps> = ({
   center = false
 }) => (
   <Paper ta={center ? 'center' : undefined} bg="white">
-    <HeaderTypography mb="lg">
-      {title}
-    </HeaderTypography>
-    {description && (
-      <Text size="md" mb="lg">
-        {description}
-      </Text>
-    )}
-    {content}
+    <Stack justify="flex-start" gap="lg">
+      <HeaderTypography>
+        {title}
+      </HeaderTypography>
+      {description && (
+        <Text size="md">
+          {description}
+        </Text>
+      )}
+      <Box>
+        {content}
+      </Box>
+    </Stack>
   </Paper>
 );
 

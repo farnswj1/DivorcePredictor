@@ -9,7 +9,6 @@ interface FormState {
   readonly type: PageState.Form;
 }
 
-
 interface ResultState {
   readonly type: PageState.Result;
   readonly prediction: boolean;
