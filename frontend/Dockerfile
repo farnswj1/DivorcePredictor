@@ -1,12 +1,12 @@
 # base image
-FROM node:24-slim AS build
+FROM node:26.4.0-slim AS build
 
 # set directory
 WORKDIR /opt/app
 
 # add application and install dependencies
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 COPY . ./
 
 # setup the build
