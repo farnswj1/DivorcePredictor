@@ -1,12 +1,7 @@
 import { useReducer } from 'react';
 import { isAxiosError, type AxiosResponse } from 'axios';
 
-enum FetchStatus {
-  Idle = 'Idle',
-  Pending = 'Pending',
-  Result = 'Result',
-  Error = 'Error'
-}
+type FetchStatus = 'idle' | 'pending' | 'success' | 'error';
 
 interface IdleOrPendingState {
   readonly loading: boolean;
@@ -21,20 +16,20 @@ interface ResultOrErrorState {
 type State = IdleOrPendingState | ResultOrErrorState;
 
 interface IdleOrPendingAction {
-  readonly type: FetchStatus.Idle | FetchStatus.Pending;
+  readonly type: Extract<FetchStatus, 'idle' | 'pending'>;
 }
 
-interface ResultAction {
-  readonly type: FetchStatus.Result;
+interface SuccessAction {
+  readonly type: Extract<FetchStatus, 'success'>;
   readonly response: AxiosResponse;
 }
 
 interface ErrorAction {
-  readonly type: FetchStatus.Error;
+  readonly type: Extract<FetchStatus, 'error'>;
   readonly error: unknown;
 }
 
-type Action = IdleOrPendingAction | ResultAction | ErrorAction;
+type Action = IdleOrPendingAction | SuccessAction | ErrorAction;
 
 interface UseSubmitOptions<T, U> {
   onSubmit: (data: T) => Promise<AxiosResponse<U>>;
@@ -48,13 +43,13 @@ interface UseSubmitReturn<T> {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case FetchStatus.Idle:
+    case 'idle':
       return { loading: false, status: null };
-    case FetchStatus.Pending:
+    case 'pending':
       return { loading: true, status: null };
-    case FetchStatus.Result:
+    case 'success':
       return { loading: false, status: action.response.status };
-    case FetchStatus.Error: {
+    case 'error': {
       const { error } = action;
       const status = (isAxiosError(error) && error.response)
         ? error.response.status
@@ -75,11 +70,11 @@ const useSubmit = <T, U>({
   const [fetchState, dispatch] = useReducer<State, [action: Action]>(reducer, initialState);
 
   const submit = (data: T) => {
-    dispatch({ type: FetchStatus.Pending });
+    dispatch({ type: 'pending' });
 
     onSubmit(data)
       .then((response) => onSuccess(response))
-      .catch((error: unknown) => dispatch({ type: FetchStatus.Error, error }));
+      .catch((error: unknown) => dispatch({ type: 'error', error }));
   };
 
   return { fetchState, submit };

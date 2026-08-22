@@ -1,50 +1,52 @@
 import { useReducer } from 'react';
-import { PageState } from '~/types';
+
+type PageState = 'idle' | 'form' | 'result';
 
 interface IdleState {
-  readonly type: PageState.Idle;
+  readonly type: Extract<PageState, 'idle'>;
 }
 
 interface FormState {
-  readonly type: PageState.Form;
+  readonly type: Extract<PageState, 'form'>;
 }
 
 interface ResultState {
-  readonly type: PageState.Result;
+  readonly type: Extract<PageState, 'result'>;
   readonly prediction: boolean;
 }
 
 type State = IdleState | FormState | ResultState;
 
 interface IdleAction {
-  readonly type: PageState.Idle;
+  readonly type: Extract<PageState, 'idle'>;
 }
 
 interface FormAction {
-  readonly type: PageState.Form;
+  readonly type: Extract<PageState, 'form'>;
 }
 
 interface ResultAction {
-  readonly type: PageState.Result;
+  readonly type: Extract<PageState, 'result'>;
   readonly prediction: boolean;
 }
 
 type Action = IdleAction | FormAction | ResultAction;
 
 const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case PageState.Idle:
-      return { type: PageState.Idle };
-    case PageState.Form:
-      return { type: PageState.Form };
-    case PageState.Result:
-      return { type: PageState.Result, prediction: action.prediction };
+  const { type } = action;
+
+  switch (type) {
+    case 'idle':
+    case 'form':
+      return { type };
+    case 'result':
+      return { type, prediction: action.prediction };
     default:
       return state;
   }
 };
 
-const initialState: State = { type: PageState.Idle };
+const initialState: State = { type: 'idle' };
 
 interface UsePageStateReturn {
   pageState: State;
@@ -56,10 +58,10 @@ interface UsePageStateReturn {
 const usePageState = (): UsePageStateReturn => {
   const [pageState, dispatch] = useReducer(reducer, initialState);
 
-  const renderIdleView = () => dispatch({ type: PageState.Idle });
-  const renderFormView = () => dispatch({ type: PageState.Form });
+  const renderIdleView = () => dispatch({ type: 'idle' });
+  const renderFormView = () => dispatch({ type: 'form' });
   const renderResultView = (prediction: boolean) => {
-    dispatch({ type: PageState.Result, prediction });
+    dispatch({ type: 'result', prediction });
   };
 
   return { pageState, renderIdleView, renderFormView, renderResultView };

@@ -1,6 +1,5 @@
 import { type FC } from 'react';
 import { usePageState } from '~/hooks';
-import { PageState } from '~/types';
 import { setTitle } from '~/utils';
 import IdleView from './IdleView';
 import FormView from './FormView';
@@ -17,11 +16,11 @@ const HomePage: FC = () => {
   } = usePageState();
 
   switch (pageState.type) {
-    case PageState.Idle:
+    case 'idle':
       return <IdleView onStart={renderFormView} />;
-    case PageState.Form:
+    case 'form':
       return <FormView onResultReceived={renderResultView} />;
-    case PageState.Result:
+    case 'result':
       return <ResultView prediction={pageState.prediction} onReset={renderIdleView} />;
     default:
       return null;
