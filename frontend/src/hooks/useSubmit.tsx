@@ -1,7 +1,12 @@
 import { useReducer } from 'react';
 import { isAxiosError, type AxiosResponse } from 'axios';
 
-type FetchStatus = 'idle' | 'pending' | 'success' | 'error';
+const FetchStatus = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  ERROR: 'error'
+} as const;
 
 interface IdleOrPendingState {
   readonly loading: boolean;
@@ -16,16 +21,16 @@ interface ResultOrErrorState {
 type State = IdleOrPendingState | ResultOrErrorState;
 
 interface IdleOrPendingAction {
-  readonly type: Extract<FetchStatus, 'idle' | 'pending'>;
+  readonly type: typeof FetchStatus.IDLE | typeof FetchStatus.PENDING;
 }
 
 interface SuccessAction {
-  readonly type: Extract<FetchStatus, 'success'>;
+  readonly type: typeof FetchStatus.SUCCESS;
   readonly response: AxiosResponse;
 }
 
 interface ErrorAction {
-  readonly type: Extract<FetchStatus, 'error'>;
+  readonly type: typeof FetchStatus.ERROR;
   readonly error: unknown;
 }
 
@@ -43,13 +48,13 @@ interface UseSubmitReturn<T> {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'idle':
+    case FetchStatus.IDLE:
       return { loading: false, status: null };
-    case 'pending':
+    case FetchStatus.PENDING:
       return { loading: true, status: null };
-    case 'success':
+    case FetchStatus.SUCCESS:
       return { loading: false, status: action.response.status };
-    case 'error': {
+    case FetchStatus.ERROR: {
       const { error } = action;
       const status = (isAxiosError(error) && error.response)
         ? error.response.status
@@ -70,11 +75,11 @@ const useSubmit = <T, U>({
   const [fetchState, dispatch] = useReducer<State, [action: Action]>(reducer, initialState);
 
   const submit = (data: T) => {
-    dispatch({ type: 'pending' });
+    dispatch({ type: FetchStatus.PENDING });
 
     onSubmit(data)
       .then((response) => onSuccess(response))
-      .catch((error: unknown) => dispatch({ type: 'error', error }));
+      .catch((error: unknown) => dispatch({ type: FetchStatus.ERROR, error }));
   };
 
   return { fetchState, submit };
